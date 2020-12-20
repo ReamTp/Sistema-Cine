@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        Menu men = new Menu();
+        MenuEmpleado men = new MenuEmpleado();
         men.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarActionPerformed
