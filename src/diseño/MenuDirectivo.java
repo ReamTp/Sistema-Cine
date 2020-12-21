@@ -24,11 +24,12 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         imgUsuario = new javax.swing.JLabel();
+        contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(236, 112, 99));
+        jPanel1.setBackground(new java.awt.Color(205, 97, 85));
         jPanel1.setPreferredSize(new java.awt.Dimension(170, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -93,6 +94,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 40, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 670, 60));
+        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 670, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,6 +140,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel contenedor;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

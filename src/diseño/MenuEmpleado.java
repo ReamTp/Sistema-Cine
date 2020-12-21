@@ -1,11 +1,16 @@
 package diseño;
 
-public class MenuEmpleado extends javax.swing.JFrame {
+import paneles.PayMovie;
 
+public class MenuEmpleado extends javax.swing.JFrame {
+    
+    PayMovie pm = new PayMovie();
+    
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
         rsscalelabel.RSScaleLabel.setScaleLabel(imgUsuario, "src\\diseño\\imagenes\\usuarioIcon.png");
+        this.contenedor.add(pm);
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +28,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         lbNombreA = new javax.swing.JLabel();
         lbNombreB = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CineName");
@@ -81,6 +87,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 700, 60));
+        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 700, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -127,6 +134,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel contenedor;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
