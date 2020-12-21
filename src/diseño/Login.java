@@ -4,6 +4,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgCine, "src\\diseño\\imagenes\\Cine.png");
         setLocationRelativeTo(null);
     }
 
@@ -23,7 +24,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        imgCine = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
 
@@ -110,9 +111,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 36)); // NOI18N
         jLabel5.setText("Cine");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/Cine.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 300, 180));
+        jPanel1.add(imgCine, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 310, 290));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setText("\"El mejor cine para el mejor público\"");
@@ -171,12 +170,12 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JLabel imgCine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
