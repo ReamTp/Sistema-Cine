@@ -9,7 +9,11 @@ public class MenuEmpleado extends javax.swing.JFrame {
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgUsuario, "src\\diseño\\imagenes\\usuarioIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgPelicula, "src\\diseño\\imagenes\\movieIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgComida, "src\\diseño\\imagenes\\comidaIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
         this.contenedor.add(pm);
     }
 
@@ -20,9 +24,16 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lbPelicula = new javax.swing.JLabel();
+        lbComida = new javax.swing.JLabel();
         lbOpciones = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        imgPelicula = new javax.swing.JLabel();
+        imgComida = new javax.swing.JLabel();
+        imgOpcion = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        imgLogo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imgUsuario = new javax.swing.JLabel();
         lbNombreA = new javax.swing.JLabel();
@@ -39,40 +50,57 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setText("Name");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         jLabel2.setText("Cine");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        lbOpciones.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbPelicula.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lbPelicula.setForeground(new java.awt.Color(255, 255, 255));
+        lbPelicula.setText("          Peliculas");
+        lbPelicula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(lbPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 180, -1));
+
+        lbComida.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lbComida.setForeground(new java.awt.Color(255, 255, 255));
+        lbComida.setText("          Comidas");
+        lbComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(lbComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 180, -1));
+
+        lbOpciones.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lbOpciones.setForeground(new java.awt.Color(255, 255, 255));
-        lbOpciones.setText("Opciones");
+        lbOpciones.setText("          Opciones");
         lbOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbOpcionesMouseClicked(evt);
             }
         });
-        jPanel1.add(lbOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 80, -1));
+        jPanel1.add(lbOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 180, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Pago Pelicula");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 120, -1));
+        imgPelicula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(imgPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 32, 32));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Pago Comida");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, -1));
+        imgComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(imgComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 32, 32));
+
+        imgOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 32, 32));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Registro Boletas");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 180, 2));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 180, 2));
+        jPanel1.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 64, 64));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 600));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 40, 40));
+        jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 15, 32, 32));
 
         lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbNombreA.setText("Nombre Empleado");
@@ -135,16 +163,23 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedor;
+    private javax.swing.JLabel imgComida;
+    private javax.swing.JLabel imgLogo;
+    private javax.swing.JLabel imgOpcion;
+    private javax.swing.JLabel imgPelicula;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbComida;
     private javax.swing.JLabel lbNombreA;
     private javax.swing.JLabel lbNombreB;
     private javax.swing.JLabel lbOpciones;
+    private javax.swing.JLabel lbPelicula;
     // End of variables declaration//GEN-END:variables
 }
