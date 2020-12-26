@@ -1,6 +1,7 @@
 package pimportantes;
 
 import java.awt.Color;
+import jfagregar.*;
 
 public class AddData extends javax.swing.JPanel {
 
@@ -55,6 +56,9 @@ public class AddData extends javax.swing.JPanel {
         btnMiembro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnMiembro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMiembro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMiembroMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMiembroMouseEntered(evt);
             }
@@ -63,22 +67,47 @@ public class AddData extends javax.swing.JPanel {
 
         btnPelicula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnPelicula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPelicula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPeliculaMouseClicked(evt);
+            }
+        });
         jPanel2.add(btnPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 155, 153));
 
         btnSala.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSala.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalaMouseClicked(evt);
+            }
+        });
         jPanel2.add(btnSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 155, 153));
 
         btnMetodoPago.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnMetodoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMetodoPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMetodoPagoMouseClicked(evt);
+            }
+        });
         jPanel2.add(btnMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 155, 153));
 
         btnFoodDrink.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnFoodDrink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFoodDrink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFoodDrinkMouseClicked(evt);
+            }
+        });
         jPanel2.add(btnFoodDrink, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 155, 153));
 
         btnHorarios.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnHorarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHorariosMouseClicked(evt);
+            }
+        });
         jPanel2.add(btnHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 155, 153));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -144,8 +173,38 @@ public class AddData extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMiembroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiembroMouseEntered
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnMiembroMouseEntered
+
+    private void btnMiembroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiembroMouseClicked
+        Miembros m = new Miembros();
+        m.setVisible(true);
+    }//GEN-LAST:event_btnMiembroMouseClicked
+
+    private void btnPeliculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPeliculaMouseClicked
+        Peliculas p = new Peliculas();
+        p.setVisible(true);
+    }//GEN-LAST:event_btnPeliculaMouseClicked
+
+    private void btnSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalaMouseClicked
+        Salas s = new Salas();
+        s.setVisible(true);
+    }//GEN-LAST:event_btnSalaMouseClicked
+
+    private void btnMetodoPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMetodoPagoMouseClicked
+        MPagos mp = new MPagos();
+        mp.setVisible(true);
+    }//GEN-LAST:event_btnMetodoPagoMouseClicked
+
+    private void btnFoodDrinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFoodDrinkMouseClicked
+        Consumibles c = new Consumibles();
+        c.setVisible(true);
+    }//GEN-LAST:event_btnFoodDrinkMouseClicked
+
+    private void btnHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHorariosMouseClicked
+        Horarios h = new Horarios();
+        h.setVisible(true);
+    }//GEN-LAST:event_btnHorariosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
