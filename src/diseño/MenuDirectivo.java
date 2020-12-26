@@ -1,7 +1,14 @@
 package diseño;
 
-public class MenuDirectivo extends javax.swing.JFrame {
+import pimportantes.AddData;
+import pimportantes.ModifyData;
+import pimportantes.ShowData;
 
+public class MenuDirectivo extends javax.swing.JFrame {
+    AddData ad = new AddData();
+    ModifyData md = new ModifyData();
+    ShowData sd = new ShowData();
+    
     public MenuDirectivo() {
         initComponents();
         setLocationRelativeTo(null);
@@ -20,10 +27,10 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbAgregar = new javax.swing.JLabel();
-        lbMostrar = new javax.swing.JLabel();
-        lbModificar = new javax.swing.JLabel();
-        lbOpciones = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JLabel();
+        btnMostrar = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JLabel();
+        btn = new javax.swing.JLabel();
         imgAgregar = new javax.swing.JLabel();
         imgEditar = new javax.swing.JLabel();
         imgMostrar = new javax.swing.JLabel();
@@ -37,7 +44,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         imgUsuario = new javax.swing.JLabel();
-        contenedor = new javax.swing.JPanel();
+        contenedor = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,38 +62,53 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jLabel2.setText("Cine");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
 
-        lbAgregar.setBackground(new java.awt.Color(255, 255, 255));
-        lbAgregar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        lbAgregar.setText("          Agregar Datos");
-        lbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
-
-        lbMostrar.setBackground(new java.awt.Color(255, 255, 255));
-        lbMostrar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbMostrar.setForeground(new java.awt.Color(255, 255, 255));
-        lbMostrar.setText("          Mostrar Datos");
-        lbMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lbMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
-
-        lbModificar.setBackground(new java.awt.Color(255, 255, 255));
-        lbModificar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbModificar.setForeground(new java.awt.Color(255, 255, 255));
-        lbModificar.setText("          Cambiar Datos");
-        lbModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 220, -1));
-
-        lbOpciones.setBackground(new java.awt.Color(255, 255, 255));
-        lbOpciones.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbOpciones.setForeground(new java.awt.Color(255, 255, 255));
-        lbOpciones.setText("          Opciones");
-        lbOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("          Agregar Datos");
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbOpcionesMouseClicked(evt);
+                btnAgregarMouseClicked(evt);
             }
         });
-        jPanel1.add(lbOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 220, -1));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+
+        btnMostrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setText("          Mostrar Datos");
+        btnMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMostrarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 220, -1));
+
+        btnModificar.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("          Cambiar Datos");
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 220, -1));
+
+        btn.setBackground(new java.awt.Color(255, 255, 255));
+        btn.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btn.setForeground(new java.awt.Color(255, 255, 255));
+        btn.setText("          Opciones");
+        btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 220, -1));
         jPanel1.add(imgAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 32, 32));
         jPanel1.add(imgEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 32, 32));
 
@@ -102,7 +124,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 220, 2));
         jPanel1.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 64, 64));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 223, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(674, 50));
@@ -121,16 +143,28 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 20, -1, -1));
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 15, 32, 32));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 670, 60));
-        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 670, 540));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 680, 60));
+        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 680, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbOpcionesMouseClicked
+    private void btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMouseClicked
         opciones op = new opciones();
         op.setVisible(true);
-    }//GEN-LAST:event_lbOpcionesMouseClicked
+    }//GEN-LAST:event_btnMouseClicked
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        this.contenedor.setViewportView(ad);
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
+        this.contenedor.setViewportView(md);
+    }//GEN-LAST:event_btnModificarMouseClicked
+
+    private void btnMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseClicked
+        this.contenedor.setViewportView(sd);
+    }//GEN-LAST:event_btnMostrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -168,7 +202,11 @@ public class MenuDirectivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel contenedor;
+    private javax.swing.JLabel btn;
+    private javax.swing.JLabel btnAgregar;
+    private javax.swing.JLabel btnModificar;
+    private javax.swing.JLabel btnMostrar;
+    private javax.swing.JScrollPane contenedor;
     private javax.swing.JLabel imgAgregar;
     private javax.swing.JLabel imgEditar;
     private javax.swing.JLabel imgLogo;
@@ -185,9 +223,5 @@ public class MenuDirectivo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel lbAgregar;
-    private javax.swing.JLabel lbModificar;
-    private javax.swing.JLabel lbMostrar;
-    private javax.swing.JLabel lbOpciones;
     // End of variables declaration//GEN-END:variables
 }

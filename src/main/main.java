@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import diseño.Login;
 import diseño.MenuDirectivo;

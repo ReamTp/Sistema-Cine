@@ -1,6 +1,6 @@
 package diseño;
 
-import paneles.PayMovie;
+import pimportantes.PayMovie;
 
 public class MenuEmpleado extends javax.swing.JFrame {
     
@@ -11,7 +11,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgUsuario, "src\\diseño\\imagenes\\usuarioIcon.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgPelicula, "src\\diseño\\imagenes\\movieIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgEntrada, "src\\diseño\\imagenes\\entradaIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgComida, "src\\diseño\\imagenes\\comidaIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
         this.contenedor.add(pm);
@@ -24,10 +24,10 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbPelicula = new javax.swing.JLabel();
+        lbEntrada = new javax.swing.JLabel();
         lbComida = new javax.swing.JLabel();
         lbOpciones = new javax.swing.JLabel();
-        imgPelicula = new javax.swing.JLabel();
+        imgEntrada = new javax.swing.JLabel();
         imgComida = new javax.swing.JLabel();
         imgOpcion = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -56,11 +56,11 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jLabel2.setText("Cine");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        lbPelicula.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbPelicula.setForeground(new java.awt.Color(255, 255, 255));
-        lbPelicula.setText("          Peliculas");
-        lbPelicula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lbPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 180, -1));
+        lbEntrada.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lbEntrada.setForeground(new java.awt.Color(255, 255, 255));
+        lbEntrada.setText("          Entradas");
+        lbEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(lbEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 180, -1));
 
         lbComida.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lbComida.setForeground(new java.awt.Color(255, 255, 255));
@@ -79,8 +79,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
         });
         jPanel1.add(lbOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 180, -1));
 
-        imgPelicula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(imgPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 32, 32));
+        imgEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(imgEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 32, 32));
 
         imgComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(imgComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 32, 32));
@@ -164,9 +164,9 @@ public class MenuEmpleado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedor;
     private javax.swing.JLabel imgComida;
+    private javax.swing.JLabel imgEntrada;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel imgOpcion;
-    private javax.swing.JLabel imgPelicula;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -177,9 +177,9 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lbComida;
+    private javax.swing.JLabel lbEntrada;
     private javax.swing.JLabel lbNombreA;
     private javax.swing.JLabel lbNombreB;
     private javax.swing.JLabel lbOpciones;
-    private javax.swing.JLabel lbPelicula;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package pimportantes;
 
 /**
  *
  * @author ream_
  */
-public class ShowData extends javax.swing.JPanel {
+public class PayFood extends javax.swing.JPanel {
 
     /**
-     * Creates new form ShowData
+     * Creates new form PayFood
      */
-    public ShowData() {
+    public PayFood() {
         initComponents();
     }
 
@@ -31,7 +31,7 @@ public class ShowData extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
