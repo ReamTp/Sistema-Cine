@@ -1,26 +1,40 @@
 package diseño;
 
-public class Login extends javax.swing.JFrame {
+import datos.ComprobarLogin;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Properties;
+import javax.swing.JOptionPane;
 
+public class Login extends javax.swing.JFrame {
+    private final Properties datos = new Properties();
+    String db, correo, pass;
+    private int tipo = 0;
+    private final ComprobarLogin cl = new ComprobarLogin();
+    char[] arrayC;
+    
     public Login() {
         initComponents();
         rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgCine, "src\\diseño\\imagenes\\Cine.png");
         setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtcorreo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnIniciar = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtcontraseña = new javax.swing.JPasswordField();
         imgLogo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -28,6 +42,7 @@ public class Login extends javax.swing.JFrame {
         imgCine = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        btnOpciones = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -42,9 +57,10 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Correo Electronico");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
+        txtcorreo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtcorreo.setText("marco@gmail.com");
+        txtcorreo.setBorder(null);
+        jPanel2.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
 
         jPanel4.setBackground(new java.awt.Color(84, 153, 199));
 
@@ -92,8 +108,9 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 170, 30));
 
-        jPasswordField1.setBorder(null);
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 210, -1));
+        txtcontraseña.setText("marco");
+        txtcontraseña.setBorder(null);
+        jPanel2.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 210, -1));
         jPanel2.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 64, 64));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 280, 360));
@@ -118,17 +135,98 @@ public class Login extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/configuracion32.png"))); // NOI18N
+        btnOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOpcionesMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btnOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 32, 32));
+
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 260, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void guardarDatosUsuario(String email, String password, String db){
+        Properties data = new Properties();
+        String nombre = "";
+        try{
+            switch (db){
+                case "mysql" ->{
+                    nombre = cl.obtenerNombreMySQL(email, password);
+                }
+                case "oracle" ->{
+                    nombre = cl.obtenerNombreOracle(email, password);
+                }
+            }
+            
+            data.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
+            data.setProperty("nombre", nombre);
+            data.setProperty("email", email);
+            data.setProperty("password", password);
+            data.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
+            
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        MenuEmpleado men = new MenuEmpleado();
-//        MenuDirectivo men = new MenuDirectivo();
-        men.setVisible(true);
-        this.dispose();
+        correo = this.txtcorreo.getText();
+        arrayC = this.txtcontraseña.getPassword();
+        pass = new String(arrayC);
+        
+        try {
+            datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
+
+            db = datos.get("database").toString();
+            System.out.println(db);
+
+            switch (db){
+                case "mysql" -> {
+                    tipo = cl.revisarUsuarioMySQL(correo, pass);
+                    break;
+                }
+                case "oracle" -> {
+                    tipo = cl.revisarUsuarioOracle(correo, pass);
+                    break;
+                }
+                default -> JOptionPane.showMessageDialog(null, "Error de Base de Datos");
+            }
+            
+            switch (tipo){
+                case 1 ->{
+                    guardarDatosUsuario(correo, pass, db);
+                    MenuDirectivo menD = new MenuDirectivo();
+                    menD.setVisible(true);
+                    this.dispose();
+                    break;
+                }
+                case 2 ->{
+                    guardarDatosUsuario(correo, pass, db);
+                    MenuEmpleado menE = new MenuEmpleado();
+                    menE.setVisible(true);
+                    this.dispose();
+                    break;
+                }
+                default -> JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpcionesMouseClicked
+        opciones op = new opciones();
+        op.setVisible(true);
+    }//GEN-LAST:event_btnOpcionesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -168,6 +266,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JLabel btnOpciones;
     private javax.swing.JLabel imgCine;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel jLabel1;
@@ -180,7 +279,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtcontraseña;
+    private javax.swing.JTextField txtcorreo;
     // End of variables declaration//GEN-END:variables
 }

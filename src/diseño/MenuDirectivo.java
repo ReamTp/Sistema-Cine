@@ -1,10 +1,16 @@
 package diseño;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import pimportantes.AddData;
 import pimportantes.ModifyData;
 import pimportantes.ShowData;
 
 public class MenuDirectivo extends javax.swing.JFrame {
+    Properties datos = new Properties();
+    String name;
     AddData ad = new AddData();
     ModifyData md = new ModifyData();
     ShowData sd = new ShowData();
@@ -18,8 +24,25 @@ public class MenuDirectivo extends javax.swing.JFrame {
         rsscalelabel.RSScaleLabel.setScaleLabel(imgEditar, "src\\diseño\\imagenes\\editarIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgMostrar, "src\\diseño\\imagenes\\mostrarIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
+        ObtenerNombre();
     }
-
+    
+    private void ObtenerNombre(){
+        try {
+            datos.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
+      
+            name = datos.get("nombre").toString();
+            System.out.println(name);
+            this.lbNombreA.setText(name);
+            this.lbNombreB.setText(name);
+            
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,9 +63,9 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         imgLogo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbNombreB = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lbNombreA = new javax.swing.JLabel();
         imgUsuario = new javax.swing.JLabel();
         contenedor = new javax.swing.JScrollPane();
 
@@ -130,17 +153,17 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(674, 50));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
-        jLabel3.setText("Nombre");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        lbNombreB.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
+        lbNombreB.setText("Nombre");
+        jPanel2.add(lbNombreB, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         jLabel4.setText("Bienvenido");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Nombre Directivo");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 20, -1, -1));
+        lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbNombreA.setText("Nombre Directivo");
+        jPanel2.add(lbNombreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 20, -1, -1));
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 15, 32, 32));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 680, 60));
@@ -215,13 +238,13 @@ public class MenuDirectivo extends javax.swing.JFrame {
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbNombreA;
+    private javax.swing.JLabel lbNombreB;
     // End of variables declaration//GEN-END:variables
 }

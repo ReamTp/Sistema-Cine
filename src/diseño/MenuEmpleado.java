@@ -1,9 +1,14 @@
 package diseño;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import pimportantes.PayMovie;
 
 public class MenuEmpleado extends javax.swing.JFrame {
-    
+    Properties datos = new Properties();
+    String name;
     PayMovie pm = new PayMovie();
     
     public MenuEmpleado() {
@@ -15,8 +20,25 @@ public class MenuEmpleado extends javax.swing.JFrame {
         rsscalelabel.RSScaleLabel.setScaleLabel(imgComida, "src\\diseño\\imagenes\\comidaIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
         this.contenedor.add(pm);
+        ObtenerNombre();
     }
-
+        
+    private void ObtenerNombre(){
+        try {
+            datos.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
+      
+            name = datos.get("nombre").toString();
+            System.out.println(name);
+            this.lbNombreA.setText(name);
+            this.lbNombreB.setText(name);
+            
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,11 +122,11 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 15, 32, 32));
+        jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 16, 32, 32));
 
         lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbNombreA.setText("Nombre Empleado");
-        jPanel2.add(lbNombreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+        jPanel2.add(lbNombreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
 
         lbNombreB.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         lbNombreB.setText("Nombre");
