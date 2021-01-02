@@ -113,13 +113,13 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`sala_peliculas`(
 	id_peli INT,
     CONSTRAINT fk_id_peli FOREIGN KEY (id_peli) REFERENCES peliculas(id_peli),
     id_sala INT,
-    CONSTRAINT fk_id_sala FOREIGN KEY (id_sala) REFERENCES salas(id_sala),
-    asiento_disp INT(3)
+    CONSTRAINT fk_id_sala FOREIGN KEY (id_sala) REFERENCES salas(id_sala)
 );
 
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`estrenos`(
 	id_peli INT,
-    CONSTRAINT fk_id_peli2 FOREIGN KEY (id_peli) REFERENCES peliculas(id_peli)
+    CONSTRAINT fk_id_peli2 FOREIGN KEY (id_peli) REFERENCES peliculas(id_peli),
+    fecha DATE
 );
 
 -- Boletos para Miembros y Clientes Normales
@@ -145,6 +145,8 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_clientes`(
     fecha DATE,
     hora TIME,
     nombre_cli VARCHAR(50),
+    id_tipo_doc INT,
+    CONSTRAINT fk_id_tip_doc FOREIGN KEY (id_tipo_doc) REFERENCES tipo_documentos(id_tipo_doc),
     num_doc INT,
     id_peli INT,
     CONSTRAINT fk_id_peli4 FOREIGN KEY (id_peli) REFERENCES peliculas(id_peli),
@@ -153,6 +155,20 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_clientes`(
     id_mp INT,
     CONSTRAINT fk_id_mp3 FOREIGN KEY (id_mp) REFERENCES metodos_pagos(id_mp),
     precio_final DOUBLE(5,2)
+);
+
+CREATE TABLE IF NOT EXISTS `dbsistemacine`.`cant_bol_cli`(
+	id_boleto INT,
+    CONSTRAINT fk_id_boleto_2 FOREIGN KEY (id_boleto) REFERENCES boletos_clientes(id_boleto),
+    cant_bol_adultos INT,
+    cant_bol_niños INT
+);
+
+CREATE TABLE IF NOT EXISTS `dbsistemacine`.`cant_bol_mie`(
+	id_boleto INT,
+    CONSTRAINT fk_id_boleto_3 FOREIGN KEY (id_boleto) REFERENCES boletos_miembros(id_boleto),
+    cant_bol_adultos INT,
+    cant_bol_niños INT
 );
 
 /*
