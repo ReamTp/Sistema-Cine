@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import pimportantes.PayFood;
 import pimportantes.PayMovie;
 
 public class MenuEmpleado extends javax.swing.JFrame {
@@ -19,7 +20,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         rsscalelabel.RSScaleLabel.setScaleLabel(imgEntrada, "src\\diseño\\imagenes\\entradaIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgComida, "src\\diseño\\imagenes\\comidaIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
-        this.contenedor.add(pm);
         ObtenerNombre();
     }
         
@@ -46,25 +46,32 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbEntrada = new javax.swing.JLabel();
-        lbComida = new javax.swing.JLabel();
-        lbOpciones = new javax.swing.JLabel();
-        imgEntrada = new javax.swing.JLabel();
-        imgComida = new javax.swing.JLabel();
-        imgOpcion = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         imgLogo = new javax.swing.JLabel();
+        pnEntradas = new javax.swing.JPanel();
+        btnEntrada = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
+        imgEntrada = new javax.swing.JLabel();
+        pnComidas = new javax.swing.JPanel();
+        btnComida = new javax.swing.JLabel();
+        titulo2 = new javax.swing.JLabel();
+        imgComida = new javax.swing.JLabel();
+        pnOpciones = new javax.swing.JPanel();
+        btnOpciones = new javax.swing.JLabel();
+        titulo3 = new javax.swing.JLabel();
+        imgOpcion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imgUsuario = new javax.swing.JLabel();
         lbNombreA = new javax.swing.JLabel();
         lbNombreB = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        contenedor = new javax.swing.JPanel();
+        contenedor = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CineName");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(69, 179, 157));
@@ -78,38 +85,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jLabel2.setText("Cine");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        lbEntrada.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbEntrada.setForeground(new java.awt.Color(255, 255, 255));
-        lbEntrada.setText("          Entradas");
-        lbEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lbEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 180, -1));
-
-        lbComida.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbComida.setForeground(new java.awt.Color(255, 255, 255));
-        lbComida.setText("          Comidas");
-        lbComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lbComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 180, -1));
-
-        lbOpciones.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lbOpciones.setForeground(new java.awt.Color(255, 255, 255));
-        lbOpciones.setText("          Opciones");
-        lbOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbOpcionesMouseClicked(evt);
-            }
-        });
-        jPanel1.add(lbOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 180, -1));
-
-        imgEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(imgEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 32, 32));
-
-        imgComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(imgComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 32, 32));
-
-        imgOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 32, 32));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Registro Boletas");
@@ -117,6 +92,83 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 180, 2));
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 180, 2));
         jPanel1.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 64, 64));
+
+        pnEntradas.setBackground(new java.awt.Color(69, 179, 157));
+        pnEntradas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEntrada.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnEntrada.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEntradaMouseClicked(evt);
+            }
+        });
+        pnEntradas.add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
+
+        titulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setText("Entradas");
+        titulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnEntradas.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
+
+        imgEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnEntradas.add(imgEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
+
+        jPanel1.add(pnEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 180, 50));
+
+        pnComidas.setBackground(new java.awt.Color(69, 179, 157));
+        pnComidas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnComida.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnComida.setForeground(new java.awt.Color(255, 255, 255));
+        btnComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnComida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnComidaMouseClicked(evt);
+            }
+        });
+        pnComidas.add(btnComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
+
+        titulo2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        titulo2.setForeground(new java.awt.Color(255, 255, 255));
+        titulo2.setText("Comidas");
+        titulo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnComidas.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
+
+        imgComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnComidas.add(imgComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
+
+        jPanel1.add(pnComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 180, 50));
+
+        pnOpciones.setBackground(new java.awt.Color(69, 179, 157));
+        pnOpciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnOpciones.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnOpciones.setForeground(new java.awt.Color(255, 255, 255));
+        btnOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOpcionesMouseClicked(evt);
+            }
+        });
+        pnOpciones.add(btnOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
+
+        titulo3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        titulo3.setForeground(new java.awt.Color(255, 255, 255));
+        titulo3.setText("Opciones");
+        titulo3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                titulo3MouseClicked(evt);
+            }
+        });
+        pnOpciones.add(titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
+
+        imgOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnOpciones.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
+
+        jPanel1.add(pnOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 180, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 600));
 
@@ -142,10 +194,24 @@ public class MenuEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbOpcionesMouseClicked
+    private void btnOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpcionesMouseClicked
         opciones op = new opciones();
         op.setVisible(true);
-    }//GEN-LAST:event_lbOpcionesMouseClicked
+    }//GEN-LAST:event_btnOpcionesMouseClicked
+
+    private void titulo3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titulo3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titulo3MouseClicked
+
+    private void btnEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntradaMouseClicked
+        PayMovie pm = new PayMovie();
+        this.contenedor.setViewportView(pm);
+    }//GEN-LAST:event_btnEntradaMouseClicked
+
+    private void btnComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComidaMouseClicked
+        PayFood pf = new PayFood();
+        this.contenedor.setViewportView(pf);
+    }//GEN-LAST:event_btnComidaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -184,7 +250,10 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel contenedor;
+    private javax.swing.JLabel btnComida;
+    private javax.swing.JLabel btnEntrada;
+    private javax.swing.JLabel btnOpciones;
+    private javax.swing.JScrollPane contenedor;
     private javax.swing.JLabel imgComida;
     private javax.swing.JLabel imgEntrada;
     private javax.swing.JLabel imgLogo;
@@ -198,10 +267,13 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel lbComida;
-    private javax.swing.JLabel lbEntrada;
     private javax.swing.JLabel lbNombreA;
     private javax.swing.JLabel lbNombreB;
-    private javax.swing.JLabel lbOpciones;
+    private javax.swing.JPanel pnComidas;
+    private javax.swing.JPanel pnEntradas;
+    private javax.swing.JPanel pnOpciones;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo2;
+    private javax.swing.JLabel titulo3;
     // End of variables declaration//GEN-END:variables
 }

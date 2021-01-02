@@ -5,10 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
-import javax.swing.JOptionPane;
 
 public class opciones extends javax.swing.JFrame {
-    Properties datos = new Properties();
     
     public opciones() {
         initComponents();
@@ -18,8 +16,11 @@ public class opciones extends javax.swing.JFrame {
     
     private void comprobarCarga(){
         try{
+            Properties datos = new Properties();
             datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
             String db = datos.getProperty("database").toString();
+            String tm = datos.getProperty("tema").toString();
+            String cr = datos.getProperty("cerrar").toString();
             switch(db){
                 case "mysql" ->{
                     this.opDbMysql.setSelected(true);
@@ -27,6 +28,21 @@ public class opciones extends javax.swing.JFrame {
                 case "oracle" ->{
                     this.opDbOracle.setSelected(true);
                 }
+            }
+            
+            switch(tm){
+                case "claro" ->{
+                    this.opTClaro.setSelected(true);
+                    break;
+                }
+                case "oscuro" ->{
+                    this.opTOscuro.setSelected(true);
+                    break;
+                }
+            }
+            
+            switch(cr){
+                case "no" -> this.btnCerrarSesion.setEnabled(false);
             }
             
         } catch(FileNotFoundException e) {
@@ -49,10 +65,16 @@ public class opciones extends javax.swing.JFrame {
         opDbMysql = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        opTClaro = new javax.swing.JCheckBox();
+        btnCerrarSesion = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        opTOscuro = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,37 +105,84 @@ public class opciones extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel5.setText("Base de Datos:");
+        jLabel5.setText("Cambiar Tema:");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/configuracion32.png"))); // NOI18N
+
+        opTClaro.setBackground(new java.awt.Color(255, 255, 255));
+        opTClaro.setText("Tema Claro");
+        opTClaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opTClaroActionPerformed(evt);
+            }
+        });
+
+        btnCerrarSesion.setBackground(new java.awt.Color(255, 0, 0));
+        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/temaClaroIcon32.png"))); // NOI18N
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/temaOscuroIcon32.png"))); // NOI18N
+
+        opTOscuro.setBackground(new java.awt.Color(255, 255, 255));
+        opTOscuro.setText("Tema Oscuro");
+        opTOscuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opTOscuroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3)
-                        .addGap(7, 7, 7)
-                        .addComponent(opDbOracle)
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel4)
-                        .addGap(8, 8, 8)
-                        .addComponent(opDbMysql))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2))))
-                .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(135, 135, 135))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel3)
+                                .addGap(7, 7, 7)
+                                .addComponent(opDbOracle))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(opTClaro)))
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(opDbMysql))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(opTOscuro))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(btnCerrarSesion)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,14 +207,22 @@ public class opciones extends javax.swing.JFrame {
                         .addComponent(opDbMysql)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addGap(217, 217, 217))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opTClaro)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opTOscuro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion)
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +234,10 @@ public class opciones extends javax.swing.JFrame {
 
     private void opDbOracleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDbOracleActionPerformed
         this.opDbMysql.setSelected(false);
+        this.opDbOracle.setSelected(true);
+        
         try{
+            Properties datos = new Properties();
             datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
             datos.setProperty("database", "oracle");
             
@@ -171,7 +251,10 @@ public class opciones extends javax.swing.JFrame {
 
     private void opDbMysqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDbMysqlActionPerformed
         this.opDbOracle.setSelected(false);
+        this.opDbMysql.setSelected(true);
+        
         try{
+            Properties datos = new Properties();
             datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
             datos.setProperty("database", "mysql");
             
@@ -182,6 +265,64 @@ public class opciones extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_opDbMysqlActionPerformed
+
+    private void opTClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opTClaroActionPerformed
+        this.opTOscuro.setSelected(false);
+        this.opTClaro.setSelected(true);
+        
+        try{
+            Properties datos = new Properties();
+            datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
+            datos.setProperty("tema", "claro");
+            
+            datos.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_opTClaroActionPerformed
+
+    private void opTOscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opTOscuroActionPerformed
+        this.opTClaro.setSelected(false);
+        this.opTOscuro.setSelected(true);
+        
+        try{
+            Properties datos = new Properties();
+            datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
+            datos.setProperty("tema", "oscuro");
+            
+            datos.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_opTOscuroActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        try{
+            Properties datos = new Properties(), data = new Properties();
+            datos.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
+            datos.setProperty("nombre", "");
+            datos.setProperty("email", "");
+            datos.setProperty("password", "");
+            
+            datos.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
+            
+            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            datos.setProperty("cerrar", "no");
+            datos.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            
+            Login l = new Login();
+            l.setVisible(true);
+            System.in.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,14 +360,19 @@ public class opciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox opDbMysql;
     private javax.swing.JCheckBox opDbOracle;
+    private javax.swing.JCheckBox opTClaro;
+    private javax.swing.JCheckBox opTOscuro;
     // End of variables declaration//GEN-END:variables
 }

@@ -151,7 +151,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void guardarDatosUsuario(String email, String password, String db){
-        Properties data = new Properties();
+        Properties data = new Properties(), data2 = new Properties();
         String nombre = "";
         try{
             switch (db){
@@ -168,6 +168,10 @@ public class Login extends javax.swing.JFrame {
             data.setProperty("email", email);
             data.setProperty("password", password);
             data.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
+            
+            data2.load(new FileInputStream("src/configuraciones/opciones.properties"));
+            data2.setProperty("cerrar", "si");
+            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
             
         } catch(FileNotFoundException e) {
             e.printStackTrace();

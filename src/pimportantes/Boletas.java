@@ -2,10 +2,10 @@ package pimportantes;
 
 import pmostrar.*;
 
-public class ShowData extends javax.swing.JPanel {
+public class Boletas extends javax.swing.JPanel {
     Bienvenida b = new Bienvenida();
     
-    public ShowData() {
+    public Boletas() {
         initComponents();
         this.contenedor.setViewportView(b);
     }
