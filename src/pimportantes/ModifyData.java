@@ -185,7 +185,7 @@ public class ModifyData extends javax.swing.JPanel {
                 btnDRoomMouseExited(evt);
             }
         });
-        pnDSala.add(btnDRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 50));
+        pnDSala.add(btnDRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 50));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,10 +200,10 @@ public class ModifyData extends javax.swing.JPanel {
         imgSala.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/salaWhite32.png"))); // NOI18N
         pnDSala.add(imgSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 10, 32, 32));
 
-        add(pnDSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 130, 50));
+        add(pnDSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 140, 50));
 
         contenedor.setBackground(new java.awt.Color(255, 255, 255));
-        add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 670, 480));
+        add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 680, 510));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUserMemberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMemberMouseEntered

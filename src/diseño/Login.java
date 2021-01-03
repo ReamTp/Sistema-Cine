@@ -171,7 +171,7 @@ public class Login extends javax.swing.JFrame {
             
             data2.load(new FileInputStream("src/configuraciones/opciones.properties"));
             data2.setProperty("cerrar", "si");
-            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            data2.store(new FileWriter("src/configuraciones/opciones.properties"),"");
             
         } catch(FileNotFoundException e) {
             e.printStackTrace();

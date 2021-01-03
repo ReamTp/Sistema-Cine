@@ -179,11 +179,11 @@ public class MenuDirectivo extends javax.swing.JFrame {
 
         lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbNombreA.setText("Nombre Directivo");
-        jPanel2.add(lbNombreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 20, -1, -1));
-        jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 15, 32, 32));
+        jPanel2.add(lbNombreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
+        jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 15, 32, 32));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 680, 60));
-        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 680, 550));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 700, 60));
+        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 700, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

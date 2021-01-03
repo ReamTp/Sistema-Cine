@@ -1,12 +1,31 @@
 package jfagregar;
 
-public class InfoMovie extends javax.swing.JFrame {
+import datos.ObtenerListaDatos;
+import datos.SetMapData;
 
+public class InfoMovie extends javax.swing.JFrame {
+    private final SetMapData smd = new SetMapData();
+    
     public InfoMovie() {
         initComponents();
         setLocationRelativeTo(null);
+        comprobarComboBox();
     }
-
+    
+    private void comprobarComboBox(){
+        for(String key : smd.keysCateg){
+            this.cbCategoria.addItem(key);
+        }
+        
+        for(String key : smd.keysHour){
+            this.cbHorario.addItem(key);
+        }
+        
+        for(String key : smd.keysMovie){
+            this.cbMovie.addItem(key);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -20,14 +39,14 @@ public class InfoMovie extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbCategoria = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbHorario = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -57,7 +76,7 @@ public class InfoMovie extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbMovie = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jSpinner3 = new javax.swing.JSpinner();
@@ -93,8 +112,6 @@ public class InfoMovie extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Categoría:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton1.setText("Agregar");
 
@@ -110,8 +127,6 @@ public class InfoMovie extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Horario:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,13 +153,13 @@ public class InfoMovie extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addGap(42, 42, 42)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextField1)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(55, 55, 55)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(cbHorario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -161,7 +176,7 @@ public class InfoMovie extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -173,7 +188,7 @@ public class InfoMovie extends javax.swing.JFrame {
                         .addGap(36, 36, 36))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -408,8 +423,7 @@ public class InfoMovie extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel4.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 140, -1));
+        jPanel4.add(cbMovie, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 190, -1));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel18.setText("Peliculas:");
@@ -432,7 +446,7 @@ public class InfoMovie extends javax.swing.JFrame {
         jPanel4.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 60, -1));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/fechaIcon64.png"))); // NOI18N
-        jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+        jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
 
         jButton9.setText("Asociar");
         jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
@@ -520,6 +534,9 @@ public class InfoMovie extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbCategoria;
+    private javax.swing.JComboBox<String> cbHorario;
+    private javax.swing.JComboBox<String> cbMovie;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -530,9 +547,6 @@ public class InfoMovie extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
