@@ -3,40 +3,75 @@ package pmodificar;
 import datos.SetMapData;
 import datos.*;
 import entidades.*;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class UserMembers extends javax.swing.JPanel {
+
     private final UsuariosCRUD uc = new UsuariosCRUD();
     private final MiembrosCRUD mc = new MiembrosCRUD();
     private final TUsuariosCRUD tuc = new TUsuariosCRUD();
     private final TDocumentosCRUD tdc = new TDocumentosCRUD();
     private final SetMapData smd = new SetMapData();
-    private final DefaultTableModel modeloUser = new DefaultTableModel();
-    private final DefaultTableModel modeloMember = new DefaultTableModel();
-    private final DefaultTableModel modeloTUser = new DefaultTableModel();
-    private final DefaultTableModel modeloTDoc = new DefaultTableModel();
-    
+    private DefaultTableModel modeloUser;
+    private DefaultTableModel modeloMember;
+    private DefaultTableModel modeloTUser;
+    private DefaultTableModel modeloTDoc;
+    private int idUser, idMember, idTUser, idTDoc;
+
     public UserMembers() {
         initComponents();
         comprobarComboBox();
         desactivarBtnCampos();
     }
-    
-    private void comprobarComboBox(){
-        for(String key : smd.keysTDoc){
+
+    private void limpiarUsuario() {
+        this.txtCodeUser.setText("");
+        this.txtNameUser.setText("");
+        this.cbTDocUser.setSelectedIndex(0);
+        this.txtNumTDocUser.setText("");
+        this.txtCorreoUser.setText("");
+        this.txtPassUser.setText("");
+        this.cbTipoUser.setSelectedIndex(0);
+    }
+
+    private void limpiarMiembros() {
+        this.txtCodeMember.setText("");
+        this.txtCodeMember.setText("");
+        this.cbTDocMember.setSelectedIndex(0);
+        this.txtNumerDocMember.setText("");
+    }
+
+    private void limpiarTUser() {
+        this.txtCodTUser.setText("");
+        this.txtNameTUser.setText("");
+    }
+
+    private void limpiarTDoc() {
+        this.txtCodeTDoc.setText("");
+        this.txtNameTDoc.setText("");
+    }
+
+    private void comprobarComboBox() {
+        final SetMapData setdata = new SetMapData();
+        for (String key : setdata.keysTDoc) {
             this.cbTDocUser.addItem(key);
             this.cbTDocMember.addItem(key);
         }
-        
-        for(String key : smd.keysTUser){
+
+        for (String key : setdata.keysTUser) {
             this.cbTipoUser.addItem(key);
         }
     }
-    private void activarCamposUser(){
+
+    private void resetComboBox() {
+        this.cbTDocUser.removeAllItems();
+        this.cbTDocMember.removeAllItems();
+        this.cbTipoUser.removeAllItems();
+    }
+
+    private void activarCamposUser() {
         this.txtCodeUser.setEnabled(true);
         this.txtNameUser.setEnabled(true);
         this.cbTDocUser.setEnabled(true);
@@ -44,44 +79,43 @@ public class UserMembers extends javax.swing.JPanel {
         this.txtCorreoUser.setEnabled(true);
         this.txtPassUser.setEnabled(true);
         this.cbTipoUser.setEnabled(true);
-        
-        
+
         this.btnUpdateUser.setEnabled(true);
         this.btnDeleteUser.setEnabled(true);
     }
-    
-    private void activarCamposMember(){
+
+    private void activarCamposMember() {
         this.txtCodeMember.setEnabled(true);
         this.txtNameMember.setEnabled(true);
         this.cbTDocMember.setEnabled(true);
         this.txtNumerDocMember.setEnabled(true);
-        
+
         this.btnUpdateMember.setEnabled(true);
         this.btnDeleteMember.setEnabled(true);
     }
-    
-    private void activarCamposTUser(){
+
+    private void activarCamposTUser() {
         this.txtCodTUser.setEnabled(true);
         this.txtNameTUser.setEnabled(true);
-        
+
         this.btnUpdateTUser.setEnabled(true);
         this.btnDeleteTUser.setEnabled(true);
     }
-    
-    private void activarCamposTDoc(){
+
+    private void activarCamposTDoc() {
         this.txtCodeTDoc.setEnabled(true);
         this.txtNameTDoc.setEnabled(true);
-        
+
         this.btnUpdateTDoc.setEnabled(true);
         this.btnDeleteTDoc.setEnabled(true);
     }
-    
-    private void desactivarBtnCampos(){
+
+    private void desactivarBtnCampos() {
         // Usuarios
         this.btnUpdateUser.setEnabled(false);
         this.btnDeleteUser.setEnabled(false);
         this.btnSelectUser.setEnabled(false);
-        
+
         this.txtCodeUser.setEnabled(false);
         this.txtNameUser.setEnabled(false);
         this.cbTDocUser.setEnabled(false);
@@ -89,38 +123,39 @@ public class UserMembers extends javax.swing.JPanel {
         this.txtCorreoUser.setEnabled(false);
         this.txtPassUser.setEnabled(false);
         this.cbTipoUser.setEnabled(false);
-        
+
         // Miembros
         this.txtCodeMember.setEnabled(false);
         this.txtNameMember.setEnabled(false);
         this.cbTDocMember.setEnabled(false);
         this.txtNumerDocMember.setEnabled(false);
-        
+
         this.btnSelectMember.setEnabled(false);
         this.btnUpdateMember.setEnabled(false);
         this.btnDeleteMember.setEnabled(false);
-        
+
         // Tipo Usuarios
         this.txtCodTUser.setEnabled(false);
         this.txtNameTUser.setEnabled(false);
-        
+
         this.btnUpdateTUser.setEnabled(false);
         this.btnDeleteTUser.setEnabled(false);
         this.btnSelectTUser.setEnabled(false);
-        
+
         // Tipo Documentos
         this.txtCodeTDoc.setEnabled(false);
         this.txtNameTDoc.setEnabled(false);
-        
+
         this.btnUpdateTDoc.setEnabled(false);
         this.btnDeleteTDoc.setEnabled(false);
         this.btnSelectTDoc.setEnabled(false);
     }
-    
-    private void modeloUser(){
+
+    private void modeloUser() {
+        modeloUser = new DefaultTableModel();
         List<Usuarios> lista = uc.mostrar();
         String[] registro = new String[7];
-        
+
         modeloUser.addColumn("Código");
         modeloUser.addColumn("Nombre");
         modeloUser.addColumn("Tipo Doc");
@@ -128,14 +163,14 @@ public class UserMembers extends javax.swing.JPanel {
         modeloUser.addColumn("Correo");
         modeloUser.addColumn("Contraseña");
         modeloUser.addColumn("Tipo Usuario");
-        
-        for(Usuarios dato: lista){
+
+        for (Usuarios dato : lista) {
             registro[0] = Integer.toString(dato.getCodigo());
             registro[1] = dato.getNombre();
-            int tDoc = dato.getTipoDoc();            
-            for(String key : smd.keysTDoc){
+            int tDoc = dato.getTipoDoc();
+            for (String key : smd.keysTDoc) {
                 int valor = smd.lisTDoc.get(key);
-                if(tDoc == valor){
+                if (tDoc == valor) {
                     registro[2] = key;
                     break;
                 }
@@ -144,9 +179,9 @@ public class UserMembers extends javax.swing.JPanel {
             registro[4] = dato.getCorreo();
             registro[5] = dato.getPass();
             int tUser = dato.getTipoUser();
-            for(String key : smd.keysTUser){
+            for (String key : smd.keysTUser) {
                 int valor = smd.lisTUser.get(key);
-                if(tUser == valor){
+                if (tUser == valor) {
                     registro[6] = key;
                     break;
                 }
@@ -155,23 +190,24 @@ public class UserMembers extends javax.swing.JPanel {
         }
         this.tableUser.setModel(modeloUser);
     }
-    
-    private void modeloMember(){
+
+    private void modeloMember() {
         List<Miembros> lista = mc.mostrar();
         String[] registro = new String[4];
-        
+        modeloMember = new DefaultTableModel();
+
         modeloMember.addColumn("Código");
         modeloMember.addColumn("Nombre");
         modeloMember.addColumn("Tipo Doc");
         modeloMember.addColumn("Numero Doc");
-        
-        for(Miembros dato: lista){
+
+        for (Miembros dato : lista) {
             registro[0] = Integer.toString(dato.getCodigo());
             registro[1] = dato.getNombre();
             int tDoc = dato.getTipoDoc();
-            for(String key : smd.keysTDoc){
+            for (String key : smd.keysTDoc) {
                 int valor = smd.lisTDoc.get(key);
-                if(tDoc == valor){
+                if (tDoc == valor) {
                     registro[2] = key;
                     break;
                 }
@@ -181,38 +217,40 @@ public class UserMembers extends javax.swing.JPanel {
         }
         this.tableMember.setModel(modeloMember);
     }
-    
-    private void modeloTUser(){
+
+    private void modeloTUser() {
         List<TUsuarios> lista = tuc.mostrar();
         String[] registro = new String[2];
-        
+        modeloTUser = new DefaultTableModel();
+
         modeloTUser.addColumn("Código");
         modeloTUser.addColumn("Descripcion");
-        
-        for(TUsuarios dato: lista){
+
+        for (TUsuarios dato : lista) {
             registro[0] = Integer.toString(dato.getCodigo());
             registro[1] = dato.getName();
             modeloTUser.addRow(registro);
         }
         this.tableTUser.setModel(modeloTUser);
     }
-    
-    private void modeloTDoc(){
+
+    private void modeloTDoc() {
         List<TDocumentos> lista = tdc.mostrar();
         String[] registro = new String[2];
-        
+        modeloTDoc = new DefaultTableModel();
+
         modeloTDoc.addColumn("Código");
         modeloTDoc.addColumn("Descripcion");
-        
-        for(TDocumentos dato: lista){
+
+        for (TDocumentos dato : lista) {
             registro[0] = Integer.toString(dato.getCodigo());
             registro[1] = dato.getName();
             modeloTDoc.addRow(registro);
         }
         this.tableTDoc.setModel(modeloTDoc);
     }
-    
-    private void seleccionarUser(){
+
+    private void seleccionarUser() {
         // Obtenemos el primer dato del renglon seleccionado
         if (this.tableUser.getSelectedRow() > -1) {
             String codigo = (String) modeloUser.getValueAt(this.tableUser.getSelectedRow(), 0);
@@ -222,7 +260,9 @@ public class UserMembers extends javax.swing.JPanel {
             String email = (String) modeloUser.getValueAt(this.tableUser.getSelectedRow(), 4);
             String pass = (String) modeloUser.getValueAt(this.tableUser.getSelectedRow(), 5);
             String tUser = (String) modeloUser.getValueAt(this.tableUser.getSelectedRow(), 6);
-            
+
+            idUser = Integer.parseInt(codigo);
+
             this.txtCodeUser.setText(codigo);
             this.txtNameUser.setText(nombre);
             this.cbTDocUser.setSelectedItem(tDoc);
@@ -230,60 +270,70 @@ public class UserMembers extends javax.swing.JPanel {
             this.txtCorreoUser.setText(email);
             this.txtPassUser.setText(pass);
             this.cbTipoUser.setSelectedItem(tUser);
-            
+            this.tableUser.setEnabled(false);
+
             activarCamposUser();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
     }
-    
-    private void seleccionarMember(){
+
+    private void seleccionarMember() {
         // Obtenemos el primer dato del renglon seleccionado
         if (this.tableMember.getSelectedRow() > -1) {
             String codigo = (String) modeloMember.getValueAt(this.tableMember.getSelectedRow(), 0);
             String nombre = (String) modeloMember.getValueAt(this.tableMember.getSelectedRow(), 1);
-            String tDoc = (String) modeloMember.getValueAt(this.tableUser.getSelectedRow(), 2);
+            String tDoc = (String) modeloMember.getValueAt(this.tableMember.getSelectedRow(), 2);
             String numDoc = (String) modeloMember.getValueAt(this.tableMember.getSelectedRow(), 3);
-            
+
+            idMember = Integer.parseInt(codigo);
+
             this.txtCodeMember.setText(codigo);
             this.txtNameMember.setText(nombre);
-            this.cbTDocUser.setSelectedItem(tDoc);
+            this.cbTDocMember.setSelectedItem(tDoc);
             this.txtNumerDocMember.setText(numDoc);
-            
+            this.tableMember.setEnabled(false);
+
             activarCamposMember();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
     }
-    
-    private void seleccionarTUser(){
+
+    private void seleccionarTUser() {
         if (this.tableTUser.getSelectedRow() > -1) {
             String codigo = (String) tableTUser.getValueAt(this.tableTUser.getSelectedRow(), 0);
             String nombre = (String) tableTUser.getValueAt(this.tableTUser.getSelectedRow(), 1);
-            
+
+            idTUser = Integer.parseInt(codigo);
+
             this.txtCodTUser.setText(codigo);
             this.txtNameTUser.setText(nombre);
-            
+            this.tableTUser.setEnabled(false);
+
             activarCamposTUser();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
     }
-    
-    private void seleccionarTDoc(){
+
+    private void seleccionarTDoc() {
         if (this.tableTDoc.getSelectedRow() > -1) {
             String codigo = (String) tableTDoc.getValueAt(this.tableTDoc.getSelectedRow(), 0);
             String nombre = (String) tableTDoc.getValueAt(this.tableTDoc.getSelectedRow(), 1);
-            
+
+            idTDoc = Integer.parseInt(codigo);
+
             this.txtCodeTDoc.setText(codigo);
             this.txtNameTDoc.setText(nombre);
-            
+            this.tableTDoc.setEnabled(false);
+
             activarCamposTDoc();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -321,12 +371,12 @@ public class UserMembers extends javax.swing.JPanel {
         cbTDocMember = new javax.swing.JComboBox<>();
         txtNumerDocMember = new javax.swing.JTextField();
         btnUpdateMember = new javax.swing.JButton();
-        btnDeleteMember = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableMember = new javax.swing.JTable();
         btnShowMember = new javax.swing.JButton();
         btnSelectMember = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
+        btnDeleteMember = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -417,10 +467,20 @@ public class UserMembers extends javax.swing.JPanel {
 
         btnUpdateUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnUpdateUser.setText("Modificar");
+        btnUpdateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateUserActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnUpdateUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 120, -1));
 
         btnDeleteUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnDeleteUser.setText("Eliminar");
+        btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteUserActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 120, -1));
 
         tableUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -487,11 +547,12 @@ public class UserMembers extends javax.swing.JPanel {
 
         btnUpdateMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnUpdateMember.setText("Modificar");
+        btnUpdateMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateMemberActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnUpdateMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 110, -1));
-
-        btnDeleteMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        btnDeleteMember.setText("Eliminar");
-        jPanel2.add(btnDeleteMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 110, -1));
 
         tableMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tableMember.setModel(new javax.swing.table.DefaultTableModel(
@@ -526,6 +587,15 @@ public class UserMembers extends javax.swing.JPanel {
         jLabel17.setText("Editar Miembros:");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
+        btnDeleteMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btnDeleteMember.setText("Eliminar");
+        btnDeleteMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteMemberActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDeleteMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 110, -1));
+
         jTabbedPane1.addTab("Modificar Miembros", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -537,16 +607,26 @@ public class UserMembers extends javax.swing.JPanel {
 
         jLabel25.setText("Código:");
         jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-        jPanel3.add(txtCodTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 130, -1));
-        jPanel3.add(txtNameTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 130, -1));
+        jPanel3.add(txtCodTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 120, -1));
+        jPanel3.add(txtNameTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, -1));
 
         jLabel26.setText("Descripcion:");
         jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         btnUpdateTUser.setText("Modificar");
+        btnUpdateTUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateTUserActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnUpdateTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, -1));
 
         btnDeleteTUser.setText("Eliminar");
+        btnDeleteTUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteTUserActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnDeleteTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 100, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/tipoUsuario128.png"))); // NOI18N
@@ -591,16 +671,26 @@ public class UserMembers extends javax.swing.JPanel {
 
         jLabel27.setText("Código:");
         jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-        jPanel4.add(txtCodeTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 140, -1));
+        jPanel4.add(txtCodeTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 120, -1));
 
         jLabel28.setText("Descripcion:");
         jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-        jPanel4.add(txtNameTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 140, -1));
+        jPanel4.add(txtNameTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, -1));
 
         btnUpdateTDoc.setText("Modificar");
+        btnUpdateTDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateTDocActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnUpdateTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, -1));
 
         btnDeleteTDoc.setText("Eliminar");
+        btnDeleteTDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteTDocActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnDeleteTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 100, -1));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/tipoDocumento128.png"))); // NOI18N
@@ -678,6 +768,229 @@ public class UserMembers extends javax.swing.JPanel {
     private void btnSelectTDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectTDocActionPerformed
         seleccionarTDoc();
     }//GEN-LAST:event_btnSelectTDocActionPerformed
+
+    private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
+        int code = Integer.parseInt(this.txtCodeUser.getText());
+        String name = this.txtNameUser.getText();
+        int typeDoc = 0;
+        String key = cbTDocUser.getSelectedItem().toString();
+        for (String value : smd.keysTDoc) {
+            System.out.println(value);
+            if (key == value) {
+                typeDoc = smd.lisTDoc.get(key);
+                System.out.println(typeDoc);
+                break;
+            }
+        }
+        int numDoc = Integer.parseInt(this.txtNumTDocUser.getText());
+        String correo = this.txtCorreoUser.getText();
+        String password = this.txtPassUser.getText();
+        int typeUser = 0;
+        String key2 = (String) cbTipoUser.getSelectedItem();
+        for (String value : smd.keysTUser) {
+            System.out.println(value);
+            if (value.equals(key2)) {
+                typeUser = smd.lisTUser.get(key2);
+                System.out.println(typeUser);
+                break;
+            }
+        }
+
+        boolean modificar = uc.modificar(code, name, typeDoc, numDoc, correo, password, typeUser, idUser);
+
+        if (modificar) {
+            modeloUser.getDataVector().removeAllElements();
+            tableUser.updateUI();
+            modeloUser();
+            limpiarUsuario();
+            this.btnUpdateUser.setEnabled(false);
+            this.btnDeleteUser.setEnabled(false);
+
+            this.txtCodeUser.setEnabled(false);
+            this.txtNameUser.setEnabled(false);
+            this.cbTDocUser.setEnabled(false);
+            this.txtNumTDocUser.setEnabled(false);
+            this.txtCorreoUser.setEnabled(false);
+            this.txtPassUser.setEnabled(false);
+            this.cbTipoUser.setEnabled(false);
+            this.tableUser.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnUpdateUserActionPerformed
+
+    private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Tenga en cuenta que se eliminarán todos los datos relacionados con este", "¿Seguro que quiere eliminar el Dato?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        switch (opcion) {
+            case 0 -> {
+                boolean delete = uc.eliminar(idUser);
+                if (delete) {
+                    limpiarUsuario();
+                    this.btnUpdateUser.setEnabled(false);
+                    this.btnDeleteUser.setEnabled(false);
+
+                    this.txtCodeUser.setEnabled(false);
+                    this.txtNameUser.setEnabled(false);
+                    this.cbTDocUser.setEnabled(false);
+                    this.txtNumTDocUser.setEnabled(false);
+                    this.txtCorreoUser.setEnabled(false);
+                    this.txtPassUser.setEnabled(false);
+                    this.cbTipoUser.setEnabled(false);
+                    modeloUser.removeRow(this.tableUser.getSelectedRow());
+                    this.tableUser.setEnabled(true);
+                }
+                break;
+            }
+            case 1 -> {
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnDeleteUserActionPerformed
+
+    private void btnUpdateMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMemberActionPerformed
+
+        int code = Integer.parseInt(this.txtCodeMember.getText());
+        String name = this.txtNameMember.getText();
+        int typeDoc = 0;
+        String key = cbTDocUser.getSelectedItem().toString();
+        for (String value : smd.keysTDoc) {
+            System.out.println(value);
+            if (key == value) {
+                typeDoc = smd.lisTDoc.get(key);
+                System.out.println(typeDoc);
+                break;
+            }
+        }
+        int numDoc = Integer.parseInt(this.txtNumerDocMember.getText());
+
+        boolean modificar = mc.modificar(code, name, typeDoc, numDoc, idMember);
+
+        if (modificar) {
+            modeloMember.getDataVector().removeAllElements();
+            tableMember.updateUI();
+            modeloMember();
+            limpiarMiembros();
+            this.btnUpdateMember.setEnabled(false);
+            this.btnDeleteMember.setEnabled(false);
+
+            this.txtCodeMember.setEnabled(false);
+            this.txtNameMember.setEnabled(false);
+            this.cbTDocMember.setEnabled(false);
+            this.txtNumerDocMember.setEnabled(false);
+            this.tableMember.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnUpdateMemberActionPerformed
+
+    private void btnDeleteMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteMemberActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Tenga en cuenta que se eliminarán todos los datos relacionados con este", "¿Seguro que quiere eliminar el Dato?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        switch (opcion) {
+            case 0 -> {
+                boolean delete = mc.eliminar(idMember);
+                if (delete) {
+                    limpiarMiembros();
+                    this.btnUpdateMember.setEnabled(false);
+                    this.btnDeleteMember.setEnabled(false);
+
+                    this.txtCodeMember.setEnabled(false);
+                    this.txtNameMember.setEnabled(false);
+                    this.cbTDocMember.setEnabled(false);
+                    this.txtNumerDocMember.setEnabled(false);
+                    modeloMember.removeRow(this.tableMember.getSelectedRow());
+                    this.tableMember.setEnabled(true);
+                }
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnDeleteMemberActionPerformed
+
+    private void btnUpdateTUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTUserActionPerformed
+        int code = Integer.parseInt(this.txtCodTUser.getText());
+        String name = this.txtNameTUser.getText();
+
+        boolean modificar = tuc.modificar(code, name, idTUser);
+
+        if (modificar) {
+            modeloTUser.getDataVector().removeAllElements();
+            tableTUser.updateUI();
+            modeloTUser();
+            limpiarTUser();
+            this.btnDeleteTUser.setEnabled(false);
+            this.btnUpdateTUser.setEnabled(false);
+
+            this.txtCodTUser.setEnabled(false);
+            this.txtNameTUser.setEnabled(false);
+            this.tableTUser.setEnabled(true);
+            resetComboBox();
+            comprobarComboBox();
+        }
+    }//GEN-LAST:event_btnUpdateTUserActionPerformed
+
+    private void btnDeleteTUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteTUserActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Tenga en cuenta que se eliminarán todos los datos relacionados con este", "¿Seguro que quiere eliminar el Dato?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        switch (opcion) {
+            case 0 -> {
+                boolean delete = tuc.eliminar(idTUser);
+                if (delete) {
+                    limpiarTUser();
+                    this.btnDeleteTUser.setEnabled(false);
+                    this.btnUpdateTUser.setEnabled(false);
+
+                    this.txtCodTUser.setEnabled(false);
+                    this.txtNameTUser.setEnabled(false);
+                    modeloTUser.removeRow(this.tableTUser.getSelectedRow());
+                    this.tableTUser.setEnabled(true);
+                    resetComboBox();
+                    comprobarComboBox();
+                }
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnDeleteTUserActionPerformed
+
+    private void btnUpdateTDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTDocActionPerformed
+        int code = Integer.parseInt(this.txtCodeTDoc.getText());
+        String name = this.txtNameTDoc.getText();
+
+        boolean modificar = tdc.modificar(code, name, idTDoc);
+
+        if (modificar) {
+            modeloTDoc.getDataVector().removeAllElements();
+            tableTDoc.updateUI();
+            modeloTDoc();
+            limpiarTDoc();
+            this.btnDeleteTDoc.setEnabled(false);
+            this.btnUpdateTDoc.setEnabled(false);
+
+            this.txtCodeTDoc.setEnabled(false);
+            this.txtNameTDoc.setEnabled(false);
+            this.tableTDoc.setEnabled(true);
+            resetComboBox();
+            comprobarComboBox();
+        }
+    }//GEN-LAST:event_btnUpdateTDocActionPerformed
+
+    private void btnDeleteTDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteTDocActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Tenga en cuenta que se eliminarán todos los datos relacionados con este", "¿Seguro que quiere eliminar el Dato?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        switch (opcion) {
+            case 0 -> {
+                boolean delete = tdc.eliminar(idTDoc);
+                if (delete) {
+                    limpiarTDoc();
+                    this.btnDeleteTDoc.setEnabled(false);
+                    this.btnUpdateTDoc.setEnabled(false);
+
+                    this.txtCodeTDoc.setEnabled(false);
+                    this.txtNameTDoc.setEnabled(false);
+                    modeloTDoc.removeRow(this.tableTDoc.getSelectedRow());
+                    this.tableTDoc.setEnabled(true);
+                    resetComboBox();
+                    comprobarComboBox();
+                }
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnDeleteTDocActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

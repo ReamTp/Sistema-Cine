@@ -1,7 +1,7 @@
 package datos;
 
 import database.TipoConexion;
-import entidades.Usuarios;
+import entidades.BoletasMiembros;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,77 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class UsuariosCRUD{
+public class BoletasMiembrosCRUD {
     private final TipoConexion TC = new TipoConexion();
     private PreparedStatement ps;
     private ResultSet rs;
     private boolean resp;
     private String consulta;
     
-    public boolean agregar(int codigo, String nombre, int tipoDoc, int numDoc, String correo, String contra, int tipoUser) {
-        boolean result = false;
-        consulta = "INSERT INTO usuarios(id_user, nombre_user, id_tipo_doc, numero_doc, correo, contra, id_tipo_user) VALUES(?,?,?,?,?,?,?)";
+    public boolean modificarPorMP(int codigo, int id) {
+        resp = false;
+        consulta = "UPDATE boletos_miembros SET id_mp = ? WHERE id_mp = ?";
         
         try{
             ps = TC.consultaSQL(consulta);
             ps.setInt(1, codigo);
-            ps.setString(2, nombre);
-            ps.setInt(3, tipoDoc);
-            ps.setInt(4, numDoc);
-            ps.setString(5, correo);
-            ps.setString(6, contra);
-            ps.setInt(7, tipoUser);
-                    
-            if(ps.executeUpdate()>0){
-                result = true;
-            }
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }finally{
-            ps = null;
-            rs = null;
-            TC.getConexion().desconectar();
-        }
-        return result;
-    }
-
-    public boolean modificar(int codigo, String nombre, int tipoDoc, int numDoc, String correo, String contra, int tipoUser, int code) {
-        resp = false;
-        consulta = "UPDATE usuarios SET id_user = ?, nombre_user = ?, id_tipo_doc = ?, numero_doc = ?, correo = ?, contra = ?, id_tipo_user = ? WHERE id_user = ?";
-        
-        try{
-            ps = TC.consultaSQL(consulta);
-            ps.setInt(1, codigo);
-            ps.setString(2, nombre);
-            ps.setInt(3, tipoDoc);
-            ps.setInt(4, numDoc);
-            ps.setString(5, correo);
-            ps.setString(6, contra);
-            ps.setInt(7, tipoUser);
-            ps.setInt(8, code);
-            if(ps.executeUpdate()>0){
-                resp = true;
-            }
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }finally{
-            ps = null;
-            rs = null;
-            TC.getConexion().desconectar();
-        }
-        
-        return resp;
-    }
-    
-    public boolean modificarPorTDoc(int tipoDoc, int id) {
-        resp = false;
-        consulta = "UPDATE usuarios SET id_tipo_doc = ? WHERE id_tipo_doc = ?";
-        
-        try{
-            ps = TC.consultaSQL(consulta);
-            ps.setInt(1, tipoDoc);
             ps.setInt(2, id);
             if(ps.executeUpdate()>0){
                 resp = true;
@@ -96,13 +39,13 @@ public class UsuariosCRUD{
         return resp;
     }
     
-    public boolean modificarPorTUser(int tipoUser, int id) {
+    public boolean modificarPorMiembros(int codigo, int id) {
         resp = false;
-        consulta = "UPDATE usuarios SET id_tipo_user = ? WHERE id_tipo_user = ?";
+        consulta = "UPDATE boletos_miembros SET id_miembro = ? WHERE id_miembro = ?";
         
         try{
             ps = TC.consultaSQL(consulta);
-            ps.setInt(1, tipoUser);
+            ps.setInt(1, codigo);
             ps.setInt(2, id);
             if(ps.executeUpdate()>0){
                 resp = true;
@@ -118,9 +61,55 @@ public class UsuariosCRUD{
         
         return resp;
     }
-
+    
+    public boolean modificarPorPeli(int codigo, int id) {
+        resp = false;
+        consulta = "UPDATE boletos_miembros SET id_peli = ? WHERE id_peli = ?";
+        
+        try{
+            ps = TC.consultaSQL(consulta);
+            ps.setInt(1, codigo);
+            ps.setInt(2, id);
+            if(ps.executeUpdate()>0){
+                resp = true;
+            }
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            ps = null;
+            rs = null;
+            TC.getConexion().desconectar();
+        }
+        
+        return resp;
+    }
+    
+    public boolean modificarPorSala(int codigo, int id) {
+        resp = false;
+        consulta = "UPDATE boletos_miembros SET id_sala = ? WHERE id_sala = ?";
+        
+        try{
+            ps = TC.consultaSQL(consulta);
+            ps.setInt(1, codigo);
+            ps.setInt(2, id);
+            if(ps.executeUpdate()>0){
+                resp = true;
+            }
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            ps = null;
+            rs = null;
+            TC.getConexion().desconectar();
+        }
+        
+        return resp;
+    }
+    
     public boolean eliminar(int code) {
-        consulta = "DELETE FROM usuarios WHERE id_user = ?";
+        consulta = "DELETE FROM boletos_miembros WHERE id_boleto = ?";
         resp = false;
         
         try{
@@ -134,15 +123,14 @@ public class UsuariosCRUD{
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
             ps = null;
-            rs = null;
             TC.getConexion().desconectar();
         }
         
         return resp;
     }
     
-    public boolean eliminarPorTDoc(int code) {
-        consulta = "DELETE FROM usuarios WHERE id_tipo_doc = ?";
+    public boolean eliminarPorMiembro(int code) {
+        consulta = "DELETE FROM boletos_miembros WHERE id_miembro = ?";
         resp = false;
         
         try{
@@ -156,15 +144,14 @@ public class UsuariosCRUD{
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
             ps = null;
-            rs = null;
             TC.getConexion().desconectar();
         }
         
         return resp;
     }
     
-    public boolean eliminarPorTUser(int code) {
-        consulta = "DELETE FROM usuarios WHERE id_tipo_user = ?";
+    public boolean eliminarPorPeli(int code) {
+        consulta = "DELETE FROM boletos_miembros WHERE id_peli = ?";
         resp = false;
         
         try{
@@ -178,34 +165,51 @@ public class UsuariosCRUD{
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
             ps = null;
-            rs = null;
             TC.getConexion().desconectar();
         }
         
         return resp;
     }
     
-    public List<Usuarios> mostrar(){
-        List<Usuarios> lista = new ArrayList();
-        consulta = "SELECT * FROM usuarios";
+    public boolean eliminarPorSala(int code) {
+        consulta = "DELETE FROM boletos_miembros WHERE id_sala = ?";
+        resp = false;
         
         try{
             ps = TC.consultaSQL(consulta);
-            rs = ps.executeQuery();
-            
-            while (rs.next()){
-                lista.add(new Usuarios(rs.getInt("id_user"),rs.getString("nombre_user"),rs.getInt("id_tipo_doc"),rs.getInt("numero_doc"),rs.getString("correo"),rs.getString("contra"),rs.getInt("id_tipo_user")));
+            ps.setInt(1, code);
+            if(ps.executeUpdate()>0){
+                resp = true;
             }
-            
             ps.close();
-            rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
             ps = null;
-            rs = null;
             TC.getConexion().desconectar();
         }
-        return lista;
+        
+        return resp;
+    }
+    
+    public boolean eliminarPorMPago(int code) {
+        consulta = "DELETE FROM boletos_miembros WHERE id_mp = ?";
+        resp = false;
+        
+        try{
+            ps = TC.consultaSQL(consulta);
+            ps.setInt(1, code);
+            if(ps.executeUpdate()>0){
+                resp = true;
+            }
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            ps = null;
+            TC.getConexion().desconectar();
+        }
+        
+        return resp;
     }
 }

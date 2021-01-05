@@ -4,11 +4,6 @@ import pmodificar.*;
 
 public class ModifyData extends javax.swing.JPanel {
     Bienvenida bn = new Bienvenida();
-    UserMembers um = new UserMembers();
-    MPay mp = new MPay();
-    AMovie am = new AMovie();
-    Consumibles cs = new Consumibles();
-    DRoom dr = new DRoom();
     
     public ModifyData() {
         initComponents();
@@ -247,22 +242,27 @@ public class ModifyData extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDRoomMouseExited
 
     private void btnUserMemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMemberMouseClicked
+        UserMembers um = new UserMembers();
         this.contenedor.setViewportView(um);
     }//GEN-LAST:event_btnUserMemberMouseClicked
 
     private void btnMPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMPagoMouseClicked
+        MPay mp = new MPay();
         this.contenedor.setViewportView(mp);
     }//GEN-LAST:event_btnMPagoMouseClicked
 
     private void btnAMovieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAMovieMouseClicked
+        AMovie am = new AMovie();
         this.contenedor.setViewportView(am);
     }//GEN-LAST:event_btnAMovieMouseClicked
 
     private void btnConsumbilesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsumbilesMouseClicked
+        Consumibles cs = new Consumibles();
         this.contenedor.setViewportView(cs);
     }//GEN-LAST:event_btnConsumbilesMouseClicked
 
     private void btnDRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDRoomMouseClicked
+        DRoom dr = new DRoom();
         this.contenedor.setViewportView(dr);
     }//GEN-LAST:event_btnDRoomMouseClicked
 

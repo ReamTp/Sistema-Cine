@@ -2,13 +2,15 @@ package jfagregar;
 
 import datos.SetMapData;
 import datos.UsuariosCRUD;
-import java.util.Map;
+import datos.MiembrosCRUD;
+import javax.swing.JOptionPane;
 
 public class UserMember extends javax.swing.JFrame {
     private final UsuariosCRUD uc = new UsuariosCRUD();
+    private final MiembrosCRUD mc = new MiembrosCRUD();
     private final SetMapData smd = new SetMapData();
-    private String name, email, password;
-    private int code, typeDoc, numDoc,typeUser;
+    private String nameUser, email, password, nameMember;
+    private int codeUser, typeDocUser, numDocUser,typeUser, codeMember, typeDocMember, numDocMember;
     
     public UserMember() {
         initComponents();
@@ -17,9 +19,9 @@ public class UserMember extends javax.swing.JFrame {
     }
     
     private void limpiarUser(){
-        this.txtCodMiem.setText("");
-        this.txtNameMiem.setText("");
-        this.txtNumDocMiem.setText("");
+        this.txtCodUser.setText("");
+        this.txtNameUser.setText("");
+        this.txtNumDocUser.setText("");
         this.txtCorreoUser.setText("");
         this.txtPassUser.setText("");
     }
@@ -336,22 +338,37 @@ public class UserMember extends javax.swing.JFrame {
         String key2 = (String) this.cbTypeUser.getSelectedItem();
         boolean resp;
         
-        code = Integer.parseInt(this.txtCodUser.getText());
-        name = this.txtNameUser.getText();
-        typeDoc = smd.ValueTDoc(key);
-        numDoc = Integer.parseInt(this.txtNumDocUser.getText());
+        codeUser = Integer.parseInt(this.txtCodUser.getText());
+        nameUser = this.txtNameUser.getText();
+        typeDocUser = smd.ValueTDoc(key);
+        numDocUser = Integer.parseInt(this.txtNumDocUser.getText());
         email = this.txtCorreoUser.getText();
         password = this.txtPassUser.getText();
         typeUser = smd.ValueTUser(key2);
         
-        resp = uc.agregar(code, name, typeDoc, numDoc, email, password, typeUser);
+        resp = uc.agregar(codeUser, nameUser, typeDocUser, numDocUser, email, password, typeUser);
         if(resp){
             this.limpiarUser();
+        }else{
+            JOptionPane.showMessageDialog(null, "Error al agregar");
         }
     }//GEN-LAST:event_btnAddUserActionPerformed
 
     private void btnAddMiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMiemActionPerformed
-        // TODO add your handling code here:
+        String key = (String) this.cbTypeDoc.getSelectedItem();
+        boolean resp;
+        
+        codeMember = Integer.parseInt(this.txtCodUser.getText());
+        nameMember = this.txtNameUser.getText();
+        typeDocMember = smd.ValueTDoc(key);
+        numDocMember = Integer.parseInt(this.txtNumDocUser.getText());
+        
+        resp = mc.agregar(codeMember, nameMember, typeDocMember, numDocMember);
+        if(resp){
+            this.limpiarMiembro();
+        }else{
+            JOptionPane.showMessageDialog(null, "Error al agregar");
+        }
     }//GEN-LAST:event_btnAddMiemActionPerformed
 
     private void btnCleanMiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanMiemActionPerformed
