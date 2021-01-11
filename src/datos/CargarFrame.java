@@ -7,14 +7,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-import javax.swing.JOptionPane;
 
 public class CargarFrame {
     private final Properties datos = new Properties();
     private final Properties datos2 = new Properties();
     String db, correo, pass;
     private int tipo = 0;
-    private ComprobarLogin cl = new ComprobarLogin();
+    private final ComprobarLogin cl = new ComprobarLogin();
     
     public void cargarDiseño(){
         try {
@@ -27,20 +26,9 @@ public class CargarFrame {
 
             correo = datos2.get("email").toString();
             pass = datos2.get("password").toString();
-//            System.out.println(correo+" "+pass);
+            System.out.println(correo+" "+pass);
 
-
-            switch (db){
-                case "mysql" -> {
-                    tipo = cl.revisarUsuarioMySQL(correo, pass);
-                    break;
-                }
-                case "oracle" -> {
-                    tipo = cl.revisarUsuarioOracle(correo, pass);
-                    break;
-                }
-                default -> System.out.println("El usuario no existe");
-            }
+            tipo = cl.revisarUsuario(correo, pass);
             
             switch (tipo){
                 case 1 ->{

@@ -404,7 +404,7 @@ public class UserMember extends javax.swing.JFrame {
             this.limpiarUser();
             modeloUser.getDataVector().removeAllElements();
             tableUser.updateUI();
-            modeloUser = mt.modeloComida();
+            modeloUser = mt.modeloUsuario();
             this.tableUser.setModel(modeloUser);
         }else{
             JOptionPane.showMessageDialog(null, "Error al agregar");
@@ -425,7 +425,7 @@ public class UserMember extends javax.swing.JFrame {
             this.limpiarMiembro();
             modeloMember.getDataVector().removeAllElements();
             tableMember.updateUI();
-            modeloMember = mt.modeloComida();
+            modeloMember = mt.modeloMiembro();
             this.tableMember.setModel(modeloMember);
         }else{
             JOptionPane.showMessageDialog(null, "Error al agregar");

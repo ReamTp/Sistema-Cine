@@ -5,12 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-    private final Properties datos = new Properties();
     String db, correo, pass;
     private int tipo = 0;
     private final ComprobarLogin cl = new ComprobarLogin();
@@ -149,28 +147,16 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void guardarDatosUsuario(String email, String password, String db){
-        Properties data = new Properties(), data2 = new Properties();
+        Properties data = new Properties();
         String nombre = "";
         try{
-            switch (db){
-                case "mysql" ->{
-                    nombre = cl.obtenerNombreMySQL(email, password);
-                }
-                case "oracle" ->{
-                    nombre = cl.obtenerNombreOracle(email, password);
-                }
-            }
+            nombre = cl.obtenerNombre(email, password);
             
             data.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
             data.setProperty("nombre", nombre);
             data.setProperty("email", email);
             data.setProperty("password", password);
             data.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
-            
-            data2.load(new FileInputStream("src/configuraciones/opciones.properties"));
-            data2.setProperty("cerrar", "si");
-            data2.store(new FileWriter("src/configuraciones/opciones.properties"),"");
-            
         } catch(FileNotFoundException e) {
             e.printStackTrace();
         } catch(IOException e){
@@ -184,22 +170,12 @@ public class Login extends javax.swing.JFrame {
         pass = new String(arrayC);
         
         try {
+            Properties datos = new Properties();
             datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
 
             db = datos.get("database").toString();
             System.out.println(db);
-
-            switch (db){
-                case "mysql" -> {
-                    tipo = cl.revisarUsuarioMySQL(correo, pass);
-                    break;
-                }
-                case "oracle" -> {
-                    tipo = cl.revisarUsuarioOracle(correo, pass);
-                    break;
-                }
-                default -> JOptionPane.showMessageDialog(null, "Error de Base de Datos");
-            }
+            tipo = cl.revisarUsuario(correo, pass);
             
             switch (tipo){
                 case 1 ->{

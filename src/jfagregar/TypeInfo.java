@@ -286,7 +286,7 @@ public class TypeInfo extends javax.swing.JFrame {
             this.limpiarTDoc();
             modelTDoc.getDataVector().removeAllElements();
             tableTDoc.updateUI();
-            modelTDoc = mt.modeloComida();
+            modelTDoc = mt.modeloTDoc();
             this.tableTDoc.setModel(modelTDoc);
         }else{
             JOptionPane.showMessageDialog(null, "Error al agregar");
@@ -304,7 +304,7 @@ public class TypeInfo extends javax.swing.JFrame {
             this.limpiarTUser();
             modelTUser.getDataVector().removeAllElements();
             tableTUser.updateUI();
-            modelTUser = mt.modeloComida();
+            modelTUser = mt.modeloTUser();
             this.tableTUser.setModel(modelTUser);
         }else{
             JOptionPane.showMessageDialog(null, "Error al agregar");

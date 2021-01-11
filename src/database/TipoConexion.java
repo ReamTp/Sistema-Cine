@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class TipoConexion {
     private final Properties data = new Properties();
-    private int result;
+    private final int result;
     private final Conexion CON;
     
     public TipoConexion(){
@@ -54,11 +54,11 @@ public class TipoConexion {
         try{
             switch(result){
             case 1 -> {
-                ps = ps = CON.conectarMySQL().prepareCall(consulta);
+                ps = CON.conectarMySQL().prepareCall(consulta);
                 break;
             }
             case 2 -> {
-                ps = ps = CON.conectarOracle().prepareCall(consulta);
+                ps = CON.conectarOracle().prepareCall(consulta);
                 break;
             }
         }
@@ -67,5 +67,9 @@ public class TipoConexion {
         }
         
         return ps;
+    }
+    
+    public void desconectar(){
+        CON.desconectar();
     }
 }
