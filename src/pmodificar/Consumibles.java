@@ -3,116 +3,71 @@ package pmodificar;
 import datos.BebidasCRUD;
 import datos.ComidasCRUD;
 import datos.SetMapData;
-import entidades.Consumible;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelosDatos.ModeloTablas;
 
 public class Consumibles extends javax.swing.JPanel {
+
     private DefaultTableModel modeloComida;
     private DefaultTableModel modeloBebida;
     private final BebidasCRUD bc = new BebidasCRUD();
     private final ComidasCRUD cc = new ComidasCRUD();
     private final SetMapData smd = new SetMapData();
+    private final ModeloTablas mt = new ModeloTablas();
     private int idComida, idBebida;
-    
+
     public Consumibles() {
         initComponents();
-        desactivarCampos();
-    }
-    
-    private void activarCamposComidas() {
-        this.txtCodeFood.setEnabled(true);
-        this.txtNameFood.setEnabled(true);
-        this.txtPrecioFood.setEnabled(true);
-
-        this.btnUpdateFood.setEnabled(true);
-        this.btnDeleteFood.setEnabled(true);
-    }
-    
-    private void activarCamposBebidas() {
-        this.txtCodeDrink.setEnabled(true);
-        this.txtNameDrink.setEnabled(true);
-        this.txtPrecioDrink.setEnabled(true);
-
-        this.btnUpdateDrink.setEnabled(true);
-        this.btnDeleteDrink.setEnabled(true);
+        CamposComidas(false);
+        CamposBebidas(false);
+        modeloTablas();
     }
 
-    private void desactivarCampos() {
-        this.txtCodeFood.setEnabled(false);
-        this.txtNameFood.setEnabled(false);
-        this.txtPrecioFood.setEnabled(false);
+    private void CamposComidas(boolean valor) {
+        this.txtCodeFood.setEnabled(valor);
+        this.txtNameFood.setEnabled(valor);
+        this.txtPrecioFood.setEnabled(valor);
 
-        this.btnUpdateFood.setEnabled(false);
-        this.btnDeleteFood.setEnabled(false);
-        this.btnSelectFood.setEnabled(false);
-        
-        this.txtCodeDrink.setEnabled(false);
-        this.txtNameDrink.setEnabled(false);
-        this.txtPrecioDrink.setEnabled(false);
-
-        this.btnUpdateDrink.setEnabled(false);
-        this.btnDeleteDrink.setEnabled(false);
-        this.btnSelectDrink.setEnabled(false);
+        this.btnUpdateFood.setEnabled(valor);
+        this.btnDeleteFood.setEnabled(valor);
     }
-    
-    private void limpiarDatosComida(){
+
+    private void CamposBebidas(boolean valor) {
+        this.txtCodeDrink.setEnabled(valor);
+        this.txtNameDrink.setEnabled(valor);
+        this.txtPrecioDrink.setEnabled(valor);
+
+        this.btnUpdateDrink.setEnabled(valor);
+        this.btnDeleteDrink.setEnabled(valor);
+    }
+
+    private void limpiarDatosComida() {
         this.txtCodeFood.setText("");
         this.txtNameFood.setText("");
         this.txtPrecioFood.setText("");
     }
-    
-    private void limpiarDatosBebida(){
+
+    private void limpiarDatosBebida() {
         this.txtCodeDrink.setText("");
         this.txtNameDrink.setText("");
         this.txtPrecioDrink.setText("");
     }
-    
-    private void modeloComidas() {
-        modeloComida = new DefaultTableModel();
-        List<Consumible> lista = cc.mostrar();
-        String[] registro = new String[3];
 
-        modeloComida.addColumn("Código");
-        modeloComida.addColumn("Nombre Comida");
-        modeloComida.addColumn("Precio");
-
-        for (Consumible dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getNombre();
-            registro[2] = Double.toString(dato.getPrecio());
-            modeloComida.addRow(registro);
-        }
-
-        this.tableComidas.setModel(modeloComida);
-    }
-    
-    private void modeloBebidas() {
-        modeloBebida = new DefaultTableModel();
-        List<Consumible> lista = bc.mostrar();
-        String[] registro = new String[3];
-
-        modeloBebida.addColumn("Código");
-        modeloBebida.addColumn("Nombre Bebida");
-        modeloBebida.addColumn("Precio");
-
-        for (Consumible dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getNombre();
-            registro[2] = Double.toString(dato.getPrecio());
-            modeloBebida.addRow(registro);
-        }
+    private void modeloTablas() {
+        modeloComida = mt.modeloComida();
+        modeloBebida = mt.modeloBebida();
 
         this.tableBebidas.setModel(modeloBebida);
+        this.tableComidas.setModel(modeloComida);
     }
-    
+
     private void seleccionarComida() {
         if (this.tableComidas.getSelectedRow() > -1) {
             String codigo = (String) modeloComida.getValueAt(this.tableComidas.getSelectedRow(), 0);
             String nombre = (String) modeloComida.getValueAt(this.tableComidas.getSelectedRow(), 1);
             String precio = (String) modeloComida.getValueAt(this.tableComidas.getSelectedRow(), 2);
-            
+
             idComida = Integer.parseInt(codigo);
 
             this.txtCodeFood.setText(codigo);
@@ -120,18 +75,18 @@ public class Consumibles extends javax.swing.JPanel {
             this.txtPrecioFood.setText(precio);
             this.tableComidas.setEnabled(false);
 
-            activarCamposComidas();
+            CamposComidas(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
     }
-    
+
     private void seleccionarBebida() {
         if (this.tableBebidas.getSelectedRow() > -1) {
             String codigo = (String) modeloBebida.getValueAt(this.tableBebidas.getSelectedRow(), 0);
             String nombre = (String) modeloBebida.getValueAt(this.tableBebidas.getSelectedRow(), 1);
             String precio = (String) modeloBebida.getValueAt(this.tableBebidas.getSelectedRow(), 2);
-            
+
             idBebida = Integer.parseInt(codigo);
 
             this.txtCodeDrink.setText(codigo);
@@ -139,14 +94,12 @@ public class Consumibles extends javax.swing.JPanel {
             this.txtPrecioDrink.setText(precio);
             this.tableBebidas.setEnabled(false);
 
-            activarCamposBebidas();
+            CamposBebidas(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,7 +109,6 @@ public class Consumibles extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableComidas = new javax.swing.JTable();
-        btnShowFood = new javax.swing.JButton();
         btnSelectFood = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnUpdateFood = new javax.swing.JButton();
@@ -168,7 +120,6 @@ public class Consumibles extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnShowDrink = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnSelectDrink = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -198,13 +149,6 @@ public class Consumibles extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(tableComidas);
-
-        btnShowFood.setText("Mostrar Datos");
-        btnShowFood.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowFoodActionPerformed(evt);
-            }
-        });
 
         btnSelectFood.setText("Seleccionar");
         btnSelectFood.addActionListener(new java.awt.event.ActionListener() {
@@ -261,11 +205,8 @@ public class Consumibles extends javax.swing.JPanel {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnShowFood, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnSelectFood, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectFood, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -297,11 +238,9 @@ public class Consumibles extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnShowFood)
-                            .addComponent(btnSelectFood))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(16, 16, 16)
+                        .addComponent(btnSelectFood)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -309,13 +248,6 @@ public class Consumibles extends javax.swing.JPanel {
         jTabbedPane1.addTab("Editar Comidas", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnShowDrink.setText("Mostrar Datos");
-        btnShowDrink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowDrinkActionPerformed(evt);
-            }
-        });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/bebidaIcon128.png"))); // NOI18N
 
@@ -360,7 +292,7 @@ public class Consumibles extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -382,10 +314,7 @@ public class Consumibles extends javax.swing.JPanel {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnShowDrink, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnSelectDrink, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSelectDrink, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
@@ -417,11 +346,9 @@ public class Consumibles extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDeleteDrink))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnShowDrink)
-                            .addComponent(btnSelectDrink))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(16, 16, 16)
+                        .addComponent(btnSelectDrink)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -450,12 +377,6 @@ public class Consumibles extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnShowFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowFoodActionPerformed
-        modeloComidas();
-        this.btnSelectFood.setEnabled(true);
-        this.btnShowFood.setEnabled(false);
-    }//GEN-LAST:event_btnShowFoodActionPerformed
-
     private void btnSelectFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFoodActionPerformed
         seleccionarComida();
     }//GEN-LAST:event_btnSelectFoodActionPerformed
@@ -470,14 +391,10 @@ public class Consumibles extends javax.swing.JPanel {
         if (modificar) {
             modeloComida.getDataVector().removeAllElements();
             tableComidas.updateUI();
-            modeloComidas();
+            modeloComida = mt.modeloComida();
+            this.tableComidas.setModel(modeloComida);
             limpiarDatosComida();
-            this.btnUpdateFood.setEnabled(false);
-            this.btnDeleteFood.setEnabled(false);
-
-            this.txtCodeFood.setEnabled(false);
-            this.txtNameFood.setEnabled(false);
-            this.txtPrecioFood.setEnabled(false);
+            CamposComidas(false);
             this.tableComidas.setEnabled(true);
         }
     }//GEN-LAST:event_btnUpdateFoodActionPerformed
@@ -489,28 +406,17 @@ public class Consumibles extends javax.swing.JPanel {
                 boolean delete = cc.eliminar(idComida);
                 if (delete) {
                     limpiarDatosComida();
-                    this.btnUpdateFood.setEnabled(false);
-                    this.btnDeleteFood.setEnabled(false);
-
-                    this.txtCodeFood.setEnabled(false);
-                    this.txtNameFood.setEnabled(false);
-                    this.txtPrecioFood.setEnabled(false);
+                    CamposComidas(false);
                     this.tableComidas.setEnabled(true);
                     modeloComida.removeRow(this.tableComidas.getSelectedRow());
                     this.tableComidas.setEnabled(true);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Error");
                 }
                 break;
             }
         }
     }//GEN-LAST:event_btnDeleteFoodActionPerformed
-
-    private void btnShowDrinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowDrinkActionPerformed
-        modeloBebidas();
-        this.btnSelectDrink.setEnabled(true);
-        this.btnShowDrink.setEnabled(false);
-    }//GEN-LAST:event_btnShowDrinkActionPerformed
 
     private void btnSelectDrinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectDrinkActionPerformed
         seleccionarBebida();
@@ -526,14 +432,10 @@ public class Consumibles extends javax.swing.JPanel {
         if (modificar) {
             modeloBebida.getDataVector().removeAllElements();
             tableBebidas.updateUI();
-            modeloBebidas();
+            modeloBebida = mt.modeloBebida();
+            this.tableBebidas.setModel(modeloBebida);
             limpiarDatosBebida();
-            this.btnUpdateDrink.setEnabled(false);
-            this.btnDeleteDrink.setEnabled(false);
-
-            this.txtCodeDrink.setEnabled(false);
-            this.txtNameDrink.setEnabled(false);
-            this.txtPrecioDrink.setEnabled(false);
+            CamposBebidas(false);
             this.tableBebidas.setEnabled(true);
         }
     }//GEN-LAST:event_btnUpdateDrinkActionPerformed
@@ -545,16 +447,11 @@ public class Consumibles extends javax.swing.JPanel {
                 boolean delete = bc.eliminar(idBebida);
                 if (delete) {
                     limpiarDatosBebida();
-                    this.btnUpdateDrink.setEnabled(false);
-                    this.btnDeleteDrink.setEnabled(false);
-
-                    this.txtCodeDrink.setEnabled(false);
-                    this.txtNameDrink.setEnabled(false);
-                    this.txtPrecioDrink.setEnabled(false);
+                    CamposBebidas(false);
                     this.tableBebidas.setEnabled(true);
                     modeloBebida.removeRow(this.tableBebidas.getSelectedRow());
                     this.tableBebidas.setEnabled(true);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Error");
                 }
                 break;
@@ -568,8 +465,6 @@ public class Consumibles extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteFood;
     private javax.swing.JButton btnSelectDrink;
     private javax.swing.JButton btnSelectFood;
-    private javax.swing.JButton btnShowDrink;
-    private javax.swing.JButton btnShowFood;
     private javax.swing.JButton btnUpdateDrink;
     private javax.swing.JButton btnUpdateFood;
     private javax.swing.JLabel jLabel1;

@@ -2,6 +2,7 @@ package diseño;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 import pimportantes.PayFood;
@@ -62,6 +63,10 @@ public class MenuEmpleado extends javax.swing.JFrame {
         btnOpciones = new javax.swing.JLabel();
         titulo3 = new javax.swing.JLabel();
         imgOpcion = new javax.swing.JLabel();
+        pnCerrar = new javax.swing.JPanel();
+        btnCerrar = new javax.swing.JLabel();
+        titulo4 = new javax.swing.JLabel();
+        imgOpcion1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imgUsuario = new javax.swing.JLabel();
         lbNombreA = new javax.swing.JLabel();
@@ -168,9 +173,38 @@ public class MenuEmpleado extends javax.swing.JFrame {
         imgOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnOpciones.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
-        jPanel1.add(pnOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 180, 50));
+        jPanel1.add(pnOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 485, 180, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 600));
+        pnCerrar.setBackground(new java.awt.Color(69, 179, 157));
+        pnCerrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseClicked(evt);
+            }
+        });
+        pnCerrar.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
+
+        titulo4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        titulo4.setForeground(new java.awt.Color(255, 255, 255));
+        titulo4.setText("Cerrar");
+        titulo4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                titulo4MouseClicked(evt);
+            }
+        });
+        pnCerrar.add(titulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
+
+        imgOpcion1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnCerrar.add(imgOpcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
+
+        jPanel1.add(pnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 180, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 610));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,8 +222,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jLabel7.setText("Bienvenido");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 700, 60));
-        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 700, 540));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 710, 60));
+        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 710, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,6 +246,34 @@ public class MenuEmpleado extends javax.swing.JFrame {
         PayFood pf = new PayFood();
         this.contenedor.setViewportView(pf);
     }//GEN-LAST:event_btnComidaMouseClicked
+
+    private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
+        try{
+            Properties datos = new Properties(), data = new Properties();
+            datos.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
+            datos.setProperty("nombre", "");
+            datos.setProperty("email", "");
+            datos.setProperty("password", "");
+            
+            datos.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
+            
+            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            data.setProperty("database", "mysql");
+            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            
+            Login l = new Login();
+            l.setVisible(true);
+            this.dispose();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnCerrarMouseClicked
+
+    private void titulo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titulo4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titulo4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -250,6 +312,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnCerrar;
     private javax.swing.JLabel btnComida;
     private javax.swing.JLabel btnEntrada;
     private javax.swing.JLabel btnOpciones;
@@ -258,6 +321,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel imgEntrada;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel imgOpcion;
+    private javax.swing.JLabel imgOpcion1;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -269,11 +333,13 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lbNombreA;
     private javax.swing.JLabel lbNombreB;
+    private javax.swing.JPanel pnCerrar;
     private javax.swing.JPanel pnComidas;
     private javax.swing.JPanel pnEntradas;
     private javax.swing.JPanel pnOpciones;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo2;
     private javax.swing.JLabel titulo3;
+    private javax.swing.JLabel titulo4;
     // End of variables declaration//GEN-END:variables
 }

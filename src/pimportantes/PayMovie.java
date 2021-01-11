@@ -8,6 +8,11 @@ public class PayMovie extends javax.swing.JPanel {
     private ObtenerListaDatos old = new ObtenerListaDatos();
     private Map lisTDoc, lisMovie, lisMPago;
     
+    public PayMovie() {
+        initComponents();
+        bloquearCamposNoModificables();
+    }
+    
     private void bloquearCamposNoModificables(){
         this.txtDateMem.setEnabled(false);
         this.txtHourMem.setEnabled(false);
@@ -41,11 +46,7 @@ public class PayMovie extends javax.swing.JPanel {
         }
     }
     
-    public PayMovie() {
-        initComponents();
-        bloquearCamposNoModificables();
-    }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

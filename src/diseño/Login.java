@@ -58,7 +58,6 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         txtcorreo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtcorreo.setText("marco@gmail.com");
         txtcorreo.setBorder(null);
         jPanel2.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
 
@@ -108,7 +107,6 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 170, 30));
 
-        txtcontraseña.setText("marco");
         txtcontraseña.setBorder(null);
         jPanel2.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 210, -1));
         jPanel2.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 64, 64));

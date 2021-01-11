@@ -1,10 +1,18 @@
 package pimportantes;
 
 import datos.SetMapData;
+import entidades.Usuarios;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class PayFood extends javax.swing.JPanel {
     private final SetMapData smd = new SetMapData();
     
+    public PayFood() {
+        initComponents();
+        comprobarComboBox();
+    }
+
     private void comprobarComboBox(){
         for(String key : smd.keysFood){
             this.cbComida.addItem(key);
@@ -19,12 +27,20 @@ public class PayFood extends javax.swing.JPanel {
         }
     }
     
-    public PayFood() {
-        initComponents();
-        comprobarComboBox();
+    private void modeloTablas(){
+        DefaultTableModel modeloComidas, modeloBebidas;
+        modeloComidas = new DefaultTableModel();
+        modeloBebidas = new DefaultTableModel();
+        
+        modeloComidas.addColumn("Código");
+        modeloComidas.addColumn("Nombre");
+        modeloComidas.addColumn("Cantidad");
+        
+        
+        modeloBebidas.addColumn("Código");
+        modeloBebidas.addColumn("Nombre");
+        modeloBebidas.addColumn("Cantidad");
     }
-
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -41,7 +57,7 @@ public class PayFood extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableFood = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         txtdateFood = new com.toedter.calendar.JDateChooser();
         jLabel23 = new javax.swing.JLabel();
@@ -54,7 +70,7 @@ public class PayFood extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableDrink = new javax.swing.JTable();
         txtdateDrink = new com.toedter.calendar.JDateChooser();
         jLabel21 = new javax.swing.JLabel();
         txtHourDrink = new com.toedter.calendar.JDateChooser();
@@ -76,7 +92,7 @@ public class PayFood extends javax.swing.JPanel {
 
         jLabel4.setText("Cantidad:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableFood.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -84,7 +100,7 @@ public class PayFood extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableFood);
 
         jButton1.setText("Agregar");
 
@@ -162,7 +178,7 @@ public class PayFood extends javax.swing.JPanel {
 
         jButton2.setText("Agregar");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableDrink.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -170,7 +186,7 @@ public class PayFood extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tableDrink);
 
         jLabel21.setText("Fecha:");
 
@@ -329,8 +345,8 @@ public class PayFood extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tableDrink;
+    private javax.swing.JTable tableFood;
     private com.toedter.calendar.JDateChooser txtHourDrink;
     private com.toedter.calendar.JDateChooser txtHourFood;
     private com.toedter.calendar.JDateChooser txtdateDrink;

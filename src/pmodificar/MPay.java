@@ -1,57 +1,36 @@
 package pmodificar;
 
 import datos.MPagosCRUD;
-import entidades.MPagos;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelosDatos.ModeloTablas;
 
 public class MPay extends javax.swing.JPanel {
     private DefaultTableModel modeloMPay;
     private final MPagosCRUD mpc = new MPagosCRUD();
+    private final ModeloTablas mt = new ModeloTablas();
     private int idMPago;
     
     public MPay() {
         initComponents();
-        bloquearCampos();
+        modeloMPago();
+        campos(false);
     }
     
     private void limpiarMPago(){
         this.txtCode.setText("");
         this.txtNombre.setText("");
     }
-    
-    private void bloquearCampos(){
-        this.txtCode.setEnabled(false);
-        this.txtNombre.setEnabled(false);
+    private void campos(boolean valor){
+        this.txtCode.setEnabled(valor);
+        this.txtNombre.setEnabled(valor);
         
-        this.btnUpdate.setEnabled(false);
-        this.btnDelete.setEnabled(false);
-        this.btnSelect.setEnabled(false);
-    }
-    
-    private void activarCampos(){
-        this.txtCode.setEnabled(true);
-        this.txtNombre.setEnabled(true);
-        
-        this.btnUpdate.setEnabled(true);
-        this.btnDelete.setEnabled(true);
-        this.btnSelect.setEnabled(true);
+        this.btnUpdate.setEnabled(valor);
+        this.btnDelete.setEnabled(valor);
     }
     
     private void modeloMPago() {
-        modeloMPay = new DefaultTableModel();
-        List<MPagos> lista = mpc.mostrar();
-        String[] registro = new String[2];
-
-        modeloMPay.addColumn("Código");
-        modeloMPay.addColumn("Nombre");
-
-        for (MPagos dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getNombre();
-            modeloMPay.addRow(registro);
-        }
+        modeloMPay = mt.modeloMPago();
         this.tableMPago.setModel(modeloMPay);
     }
     
@@ -66,7 +45,7 @@ public class MPay extends javax.swing.JPanel {
             this.txtNombre.setText(nombre);
             this.tableMPago.setEnabled(false);
 
-            activarCampos();
+            campos(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
@@ -88,7 +67,6 @@ public class MPay extends javax.swing.JPanel {
         tableMPago = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         btnSelect = new javax.swing.JButton();
-        btnShow = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -138,14 +116,6 @@ public class MPay extends javax.swing.JPanel {
             }
         });
 
-        btnShow.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        btnShow.setText("Mostrar Datos");
-        btnShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,12 +150,9 @@ public class MPay extends javax.swing.JPanel {
                         .addGap(103, 103, 103)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnSelect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
@@ -196,10 +163,8 @@ public class MPay extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnShow))
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
@@ -226,12 +191,6 @@ public class MPay extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-        modeloMPago();
-        this.btnSelect.setEnabled(true);
-        this.btnShow.setEnabled(false);
-    }//GEN-LAST:event_btnShowActionPerformed
-
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         seleccionarMPago();
     }//GEN-LAST:event_btnSelectActionPerformed
@@ -247,11 +206,7 @@ public class MPay extends javax.swing.JPanel {
             tableMPago.updateUI();
             modeloMPago();
             limpiarMPago();
-            this.btnUpdate.setEnabled(false);
-            this.btnDelete.setEnabled(false);
-
-            this.txtCode.setEnabled(false);
-            this.txtNombre.setEnabled(false);
+            campos(false);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -262,11 +217,7 @@ public class MPay extends javax.swing.JPanel {
                 boolean delete = mpc.eliminar(idMPago);
                 if (delete) {
                     limpiarMPago();
-                    this.btnUpdate.setEnabled(false);
-                    this.btnDelete.setEnabled(false);
-
-                    this.txtCode.setEnabled(false);
-                    this.txtNombre.setEnabled(false);
+                    campos(false);
                     modeloMPay.removeRow(this.tableMPago.getSelectedRow());
                     this.tableMPago.setEnabled(true);
                 }
@@ -279,7 +230,6 @@ public class MPay extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSelect;
-    private javax.swing.JButton btnShow;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

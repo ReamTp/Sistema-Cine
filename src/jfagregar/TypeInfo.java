@@ -3,16 +3,23 @@ package jfagregar;
 import datos.TDocumentosCRUD;
 import datos.TUsuariosCRUD;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelosDatos.ModeloTablas;
 
 public class TypeInfo extends javax.swing.JFrame {
     private final TDocumentosCRUD tdc = new TDocumentosCRUD();
     private final TUsuariosCRUD tuc = new TUsuariosCRUD();
+    private DefaultTableModel modelTDoc, modelTUser;
+    private final ModeloTablas mt = new ModeloTablas();
     private int codeTDoc, codeTUser;
     private String nameTDoc, nameTUser;
     
     public TypeInfo() {
         initComponents();
         setLocationRelativeTo(null);
+        modeloTablas();
+        this.tableTDoc.setEnabled(false);
+        this.tableTUser.setEnabled(false);
     }
     
     private void limpiarTDoc(){
@@ -23,6 +30,13 @@ public class TypeInfo extends javax.swing.JFrame {
     private void limpiarTUser(){
         this.txtCodeTUser.setText("");
         this.txtNameTUser.setText("");
+    }
+    
+    private void modeloTablas(){
+        modelTDoc = mt.modeloTDoc();
+        this.tableTDoc.setModel(modelTDoc);
+        modelTUser = mt.modeloTUser();
+        this.tableTUser.setModel(modelTUser);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +59,10 @@ public class TypeInfo extends javax.swing.JFrame {
         btnAddTUser = new javax.swing.JButton();
         btnLimpiarTUser = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableTUser = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableTDoc = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar tipo de Documentos");
@@ -179,21 +197,45 @@ public class TypeInfo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Agregar Tipos de Documentos y Usuarios");
 
+        tableTUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tableTUser);
+
+        tableTDoc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tableTDoc);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(87, 87, 87))))
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +246,11 @@ public class TypeInfo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,6 +284,10 @@ public class TypeInfo extends javax.swing.JFrame {
         resp = tdc.agregar(codeTDoc, nameTDoc);
         if(resp){
             this.limpiarTDoc();
+            modelTDoc.getDataVector().removeAllElements();
+            tableTDoc.updateUI();
+            modelTDoc = mt.modeloComida();
+            this.tableTDoc.setModel(modelTDoc);
         }else{
             JOptionPane.showMessageDialog(null, "Error al agregar");
         }
@@ -252,6 +302,10 @@ public class TypeInfo extends javax.swing.JFrame {
         resp = tuc.agregar(codeTUser, nameTUser);
         if(resp){
             this.limpiarTUser();
+            modelTUser.getDataVector().removeAllElements();
+            tableTUser.updateUI();
+            modelTUser = mt.modeloComida();
+            this.tableTUser.setModel(modelTUser);
         }else{
             JOptionPane.showMessageDialog(null, "Error al agregar");
         }
@@ -302,6 +356,10 @@ public class TypeInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tableTDoc;
+    private javax.swing.JTable tableTUser;
     private javax.swing.JTextField txtCodeTDoc;
     private javax.swing.JTextField txtCodeTUser;
     private javax.swing.JTextField txtNameTDoc;

@@ -23,14 +23,13 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`metodos_pagos`(
 
 -- Boletas de comidas y bebidas
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boleta_consumibles`(
-	id_boleta INT PRIMARY KEY NOT NULL,
+	id_boleta INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     fecha DATE,
     hora TIME,
     id_mp INT,
     CONSTRAINT fk_id_mp FOREIGN KEY (id_mp) REFERENCES metodos_pagos(id_mp),
     pago_total DOUBLE(5,2)
 );
-
 -- Listas de comidas y bebidas
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`lista_comida`(
 	id_boleta INT,
@@ -124,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`estrenos`(
 
 -- Boletos para Miembros y Clientes Normales
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_miembros`(
-	id_boleto INT PRIMARY KEY NOT NULL,
+	id_boleto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     fecha DATE,
     hora TIME,
     id_miembro INT,
@@ -141,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_miembros`(
 );
 
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_clientes`(
-	id_boleto INT PRIMARY KEY NOT NULL,
+	id_boleto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     fecha DATE,
     hora TIME,
     nombre_cli VARCHAR(50),

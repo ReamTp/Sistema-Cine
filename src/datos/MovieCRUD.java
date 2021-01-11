@@ -47,7 +47,6 @@ public class MovieCRUD {
     public boolean modificar(int codigo, String nombre, double duracion, int categ, String descrip, int hora, int id) {
         resp = false;
         consulta = "UPDATE peliculas SET id_peli = ?, nombre_peli = ?, duracion = ?, id_categ = ?, descripcion = ?, id_hor = ? WHERE id_peli = ?";
-        
         try{
             ps = TC.consultaSQL(consulta);
             ps.setInt(1, codigo);

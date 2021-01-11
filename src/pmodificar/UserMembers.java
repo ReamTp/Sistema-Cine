@@ -2,13 +2,13 @@ package pmodificar;
 
 import datos.SetMapData;
 import datos.*;
-import entidades.*;
-import java.util.List;
+import modelosDatos.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class UserMembers extends javax.swing.JPanel {
 
+    private final ModeloTablas mt = new ModeloTablas();
     private final UsuariosCRUD uc = new UsuariosCRUD();
     private final MiembrosCRUD mc = new MiembrosCRUD();
     private final TUsuariosCRUD tuc = new TUsuariosCRUD();
@@ -24,6 +24,7 @@ public class UserMembers extends javax.swing.JPanel {
         initComponents();
         comprobarComboBox();
         desactivarBtnCampos();
+        modelosTablas();
     }
 
     private void limpiarUsuario() {
@@ -69,52 +70,52 @@ public class UserMembers extends javax.swing.JPanel {
         this.cbTDocUser.removeAllItems();
         this.cbTDocMember.removeAllItems();
         this.cbTipoUser.removeAllItems();
+        comprobarComboBox();
     }
 
-    private void activarCamposUser() {
-        this.txtCodeUser.setEnabled(true);
-        this.txtNameUser.setEnabled(true);
-        this.cbTDocUser.setEnabled(true);
-        this.txtNumTDocUser.setEnabled(true);
-        this.txtCorreoUser.setEnabled(true);
-        this.txtPassUser.setEnabled(true);
-        this.cbTipoUser.setEnabled(true);
+    private void CamposUsuarios(boolean valor) {
+        this.btnUpdateUser.setEnabled(valor);
+        this.btnDeleteUser.setEnabled(valor);
 
-        this.btnUpdateUser.setEnabled(true);
-        this.btnDeleteUser.setEnabled(true);
+        this.txtCodeUser.setEnabled(valor);
+        this.txtNameUser.setEnabled(valor);
+        this.cbTDocUser.setEnabled(valor);
+        this.txtNumTDocUser.setEnabled(valor);
+        this.txtCorreoUser.setEnabled(valor);
+        this.txtPassUser.setEnabled(valor);
+        this.cbTipoUser.setEnabled(valor);
     }
 
-    private void activarCamposMember() {
-        this.txtCodeMember.setEnabled(true);
-        this.txtNameMember.setEnabled(true);
-        this.cbTDocMember.setEnabled(true);
-        this.txtNumerDocMember.setEnabled(true);
+    private void CamposMember(boolean valor) {
+        this.txtCodeMember.setEnabled(valor);
+        this.txtNameMember.setEnabled(valor);
+        this.cbTDocMember.setEnabled(valor);
+        this.txtNumerDocMember.setEnabled(valor);
 
-        this.btnUpdateMember.setEnabled(true);
-        this.btnDeleteMember.setEnabled(true);
+        this.btnUpdateMember.setEnabled(valor);
+        this.btnDeleteMember.setEnabled(valor);
     }
 
-    private void activarCamposTUser() {
-        this.txtCodTUser.setEnabled(true);
-        this.txtNameTUser.setEnabled(true);
+    private void CamposTUser(boolean valor) {
+        this.txtCodTUser.setEnabled(valor);
+        this.txtNameTUser.setEnabled(valor);
 
-        this.btnUpdateTUser.setEnabled(true);
-        this.btnDeleteTUser.setEnabled(true);
+        this.btnUpdateTUser.setEnabled(valor);
+        this.btnDeleteTUser.setEnabled(valor);
     }
 
-    private void activarCamposTDoc() {
-        this.txtCodeTDoc.setEnabled(true);
-        this.txtNameTDoc.setEnabled(true);
+    private void CamposTDoc(boolean valor) {
+        this.txtCodeTDoc.setEnabled(valor);
+        this.txtNameTDoc.setEnabled(valor);
 
-        this.btnUpdateTDoc.setEnabled(true);
-        this.btnDeleteTDoc.setEnabled(true);
+        this.btnUpdateTDoc.setEnabled(valor);
+        this.btnDeleteTDoc.setEnabled(valor);
     }
 
     private void desactivarBtnCampos() {
         // Usuarios
         this.btnUpdateUser.setEnabled(false);
         this.btnDeleteUser.setEnabled(false);
-        this.btnSelectUser.setEnabled(false);
 
         this.txtCodeUser.setEnabled(false);
         this.txtNameUser.setEnabled(false);
@@ -130,7 +131,6 @@ public class UserMembers extends javax.swing.JPanel {
         this.cbTDocMember.setEnabled(false);
         this.txtNumerDocMember.setEnabled(false);
 
-        this.btnSelectMember.setEnabled(false);
         this.btnUpdateMember.setEnabled(false);
         this.btnDeleteMember.setEnabled(false);
 
@@ -140,7 +140,6 @@ public class UserMembers extends javax.swing.JPanel {
 
         this.btnUpdateTUser.setEnabled(false);
         this.btnDeleteTUser.setEnabled(false);
-        this.btnSelectTUser.setEnabled(false);
 
         // Tipo Documentos
         this.txtCodeTDoc.setEnabled(false);
@@ -148,105 +147,16 @@ public class UserMembers extends javax.swing.JPanel {
 
         this.btnUpdateTDoc.setEnabled(false);
         this.btnDeleteTDoc.setEnabled(false);
-        this.btnSelectTDoc.setEnabled(false);
     }
 
-    private void modeloUser() {
-        modeloUser = new DefaultTableModel();
-        List<Usuarios> lista = uc.mostrar();
-        String[] registro = new String[7];
-
-        modeloUser.addColumn("Código");
-        modeloUser.addColumn("Nombre");
-        modeloUser.addColumn("Tipo Doc");
-        modeloUser.addColumn("Numero Doc");
-        modeloUser.addColumn("Correo");
-        modeloUser.addColumn("Contraseña");
-        modeloUser.addColumn("Tipo Usuario");
-
-        for (Usuarios dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getNombre();
-            int tDoc = dato.getTipoDoc();
-            for (String key : smd.keysTDoc) {
-                int valor = smd.lisTDoc.get(key);
-                if (tDoc == valor) {
-                    registro[2] = key;
-                    break;
-                }
-            }
-            registro[3] = Integer.toString(dato.getNumeroDoc());
-            registro[4] = dato.getCorreo();
-            registro[5] = dato.getPass();
-            int tUser = dato.getTipoUser();
-            for (String key : smd.keysTUser) {
-                int valor = smd.lisTUser.get(key);
-                if (tUser == valor) {
-                    registro[6] = key;
-                    break;
-                }
-            }
-            modeloUser.addRow(registro);
-        }
+    private void modelosTablas() {
+        modeloUser = mt.modeloUsuario();
+        modeloMember = mt.modeloMiembro();
+        modeloTUser = mt.modeloTUser();
+        modeloTDoc = mt.modeloTDoc();
         this.tableUser.setModel(modeloUser);
-    }
-
-    private void modeloMember() {
-        List<Miembros> lista = mc.mostrar();
-        String[] registro = new String[4];
-        modeloMember = new DefaultTableModel();
-
-        modeloMember.addColumn("Código");
-        modeloMember.addColumn("Nombre");
-        modeloMember.addColumn("Tipo Doc");
-        modeloMember.addColumn("Numero Doc");
-
-        for (Miembros dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getNombre();
-            int tDoc = dato.getTipoDoc();
-            for (String key : smd.keysTDoc) {
-                int valor = smd.lisTDoc.get(key);
-                if (tDoc == valor) {
-                    registro[2] = key;
-                    break;
-                }
-            }
-            registro[3] = Integer.toString(dato.getNumeroDoc());
-            modeloMember.addRow(registro);
-        }
         this.tableMember.setModel(modeloMember);
-    }
-
-    private void modeloTUser() {
-        List<TUsuarios> lista = tuc.mostrar();
-        String[] registro = new String[2];
-        modeloTUser = new DefaultTableModel();
-
-        modeloTUser.addColumn("Código");
-        modeloTUser.addColumn("Descripcion");
-
-        for (TUsuarios dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getName();
-            modeloTUser.addRow(registro);
-        }
         this.tableTUser.setModel(modeloTUser);
-    }
-
-    private void modeloTDoc() {
-        List<TDocumentos> lista = tdc.mostrar();
-        String[] registro = new String[2];
-        modeloTDoc = new DefaultTableModel();
-
-        modeloTDoc.addColumn("Código");
-        modeloTDoc.addColumn("Descripcion");
-
-        for (TDocumentos dato : lista) {
-            registro[0] = Integer.toString(dato.getCodigo());
-            registro[1] = dato.getName();
-            modeloTDoc.addRow(registro);
-        }
         this.tableTDoc.setModel(modeloTDoc);
     }
 
@@ -272,7 +182,7 @@ public class UserMembers extends javax.swing.JPanel {
             this.cbTipoUser.setSelectedItem(tUser);
             this.tableUser.setEnabled(false);
 
-            activarCamposUser();
+            CamposUsuarios(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
@@ -294,7 +204,7 @@ public class UserMembers extends javax.swing.JPanel {
             this.txtNumerDocMember.setText(numDoc);
             this.tableMember.setEnabled(false);
 
-            activarCamposMember();
+            CamposMember(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
@@ -311,7 +221,7 @@ public class UserMembers extends javax.swing.JPanel {
             this.txtNameTUser.setText(nombre);
             this.tableTUser.setEnabled(false);
 
-            activarCamposTUser();
+            CamposTUser(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
@@ -328,7 +238,7 @@ public class UserMembers extends javax.swing.JPanel {
             this.txtNameTDoc.setText(nombre);
             this.tableTDoc.setEnabled(false);
 
-            activarCamposTDoc();
+            CamposTDoc(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
@@ -359,7 +269,6 @@ public class UserMembers extends javax.swing.JPanel {
         btnDeleteUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUser = new javax.swing.JTable();
-        btnMostarUser = new javax.swing.JButton();
         btnSelectUser = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -373,7 +282,6 @@ public class UserMembers extends javax.swing.JPanel {
         btnUpdateMember = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableMember = new javax.swing.JTable();
-        btnShowMember = new javax.swing.JButton();
         btnSelectMember = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         btnDeleteMember = new javax.swing.JButton();
@@ -388,7 +296,6 @@ public class UserMembers extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableTUser = new javax.swing.JTable();
-        btnShowTUser = new javax.swing.JButton();
         btnSelectTUser = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -401,69 +308,51 @@ public class UserMembers extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableTDoc = new javax.swing.JTable();
-        btnShowTDoc = new javax.swing.JButton();
         btnSelectTDoc = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Elije el tipo de dato que desees modificar");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel2.setText("Código:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel3.setText("Nombre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel4.setText("Tipo de Doc:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         cbTipoUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(cbTipoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 100, -1));
 
         txtCodeUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(txtCodeUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 120, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setText("Número de Doc:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         txtNumTDocUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(txtNumTDocUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 100, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel6.setText("Correo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel7.setText("Contraseña:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel8.setText("Tipo de Usuario:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         txtPassUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(txtPassUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 110, -1));
 
         txtCorreoUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(txtCorreoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 110, -1));
 
         txtNameUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(txtNameUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 120, -1));
 
         cbTDocUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(cbTDocUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 100, -1));
 
         btnUpdateUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnUpdateUser.setText("Modificar");
@@ -472,7 +361,6 @@ public class UserMembers extends javax.swing.JPanel {
                 btnUpdateUserActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdateUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 120, -1));
 
         btnDeleteUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnDeleteUser.setText("Eliminar");
@@ -481,7 +369,6 @@ public class UserMembers extends javax.swing.JPanel {
                 btnDeleteUserActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 120, -1));
 
         tableUser.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tableUser.setModel(new javax.swing.table.DefaultTableModel(
@@ -494,56 +381,130 @@ public class UserMembers extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableUser);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 550, 210));
-
-        btnMostarUser.setText("Mostrar Datos");
-        btnMostarUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostarUserActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnMostarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 120, -1));
-
         btnSelectUser.setText("Seleccionar");
         btnSelectUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectUserActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSelectUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 120, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtCodeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel6)
+                        .addGap(42, 42, 42)
+                        .addComponent(txtCorreoUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(cbTDocUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPassUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(5, 5, 5)
+                                .addComponent(cbTipoUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(7, 7, 7)
+                        .addComponent(txtNumTDocUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(240, 240, 240)
+                        .addComponent(btnSelectUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCodeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtCorreoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnUpdateUser)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(cbTDocUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(txtPassUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(cbTipoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnDeleteUser)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSelectUser)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(txtNumTDocUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+        );
 
         jTabbedPane1.addTab("Modificar Usuarios", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel9.setText("Código:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel10.setText("Nombre:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         txtNameMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel2.add(txtNameMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, -1));
 
         txtCodeMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel2.add(txtCodeMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 120, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel11.setText("Tipo Doc:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel12.setText("Número de Doc:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         cbTDocMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel2.add(cbTDocMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 130, -1));
 
         txtNumerDocMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel2.add(txtNumerDocMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 130, -1));
 
         btnUpdateMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnUpdateMember.setText("Modificar");
@@ -552,7 +513,6 @@ public class UserMembers extends javax.swing.JPanel {
                 btnUpdateMemberActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUpdateMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 110, -1));
 
         tableMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tableMember.setModel(new javax.swing.table.DefaultTableModel(
@@ -565,27 +525,15 @@ public class UserMembers extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tableMember);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 570, 230));
-
-        btnShowMember.setText("Mostrar Datos");
-        btnShowMember.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowMemberActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnShowMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 120, -1));
-
         btnSelectMember.setText("Seleccionar");
         btnSelectMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectMemberActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSelectMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 110, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel17.setText("Editar Miembros:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         btnDeleteMember.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnDeleteMember.setText("Eliminar");
@@ -594,24 +542,88 @@ public class UserMembers extends javax.swing.JPanel {
                 btnDeleteMemberActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDeleteMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 110, -1));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(19, 19, 19)
+                                .addComponent(txtCodeMember, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(16, 16, 16)
+                                .addComponent(txtNameMember, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbTDocMember, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumerDocMember, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdateMember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDeleteMember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSelectMember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtCodeMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(txtNameMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel11)
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel12))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(cbTDocMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(txtNumerDocMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnUpdateMember)
+                        .addGap(17, 17, 17)
+                        .addComponent(btnDeleteMember)
+                        .addGap(17, 17, 17)
+                        .addComponent(btnSelectMember)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
 
         jTabbedPane1.addTab("Modificar Miembros", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel13.setText("Editar Tipos de Usuarios:");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabel25.setText("Código:");
-        jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-        jPanel3.add(txtCodTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 120, -1));
-        jPanel3.add(txtNameTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, -1));
 
         jLabel26.setText("Descripcion:");
-        jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         btnUpdateTUser.setText("Modificar");
         btnUpdateTUser.addActionListener(new java.awt.event.ActionListener() {
@@ -619,7 +631,6 @@ public class UserMembers extends javax.swing.JPanel {
                 btnUpdateTUserActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUpdateTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, -1));
 
         btnDeleteTUser.setText("Eliminar");
         btnDeleteTUser.addActionListener(new java.awt.event.ActionListener() {
@@ -627,10 +638,8 @@ public class UserMembers extends javax.swing.JPanel {
                 btnDeleteTUserActionPerformed(evt);
             }
         });
-        jPanel3.add(btnDeleteTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 100, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/tipoUsuario128.png"))); // NOI18N
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 128, 128));
 
         tableTUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -642,40 +651,83 @@ public class UserMembers extends javax.swing.JPanel {
         ));
         jScrollPane6.setViewportView(tableTUser);
 
-        jPanel3.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 310, 320));
-
-        btnShowTUser.setText("Mostrar Datos");
-        btnShowTUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowTUserActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnShowTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 120, -1));
-
         btnSelectTUser.setText("Seleccionar");
         btnSelectTUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectTUserActionPerformed(evt);
             }
         });
-        jPanel3.add(btnSelectTUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 110, -1));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(260, 260, 260)
+                        .addComponent(btnSelectTUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel25)
+                                .addGap(53, 53, 53)
+                                .addComponent(txtCodTUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel26)
+                                .addGap(32, 32, 32)
+                                .addComponent(txtNameTUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnUpdateTUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(btnDeleteTUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel14)))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(btnSelectTUser))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(txtCodTUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26)
+                            .addComponent(txtNameTUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdateTUser)
+                            .addComponent(btnDeleteTUser))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel14))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         jTabbedPane1.addTab("Modificar Tipo de Usuarios", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel15.setText("Editar Tipos de Documentos:");
-        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabel27.setText("Código:");
-        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-        jPanel4.add(txtCodeTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 120, -1));
 
         jLabel28.setText("Descripcion:");
-        jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-        jPanel4.add(txtNameTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, -1));
 
         btnUpdateTDoc.setText("Modificar");
         btnUpdateTDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -683,7 +735,6 @@ public class UserMembers extends javax.swing.JPanel {
                 btnUpdateTDocActionPerformed(evt);
             }
         });
-        jPanel4.add(btnUpdateTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, -1));
 
         btnDeleteTDoc.setText("Eliminar");
         btnDeleteTDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -691,10 +742,8 @@ public class UserMembers extends javax.swing.JPanel {
                 btnDeleteTDocActionPerformed(evt);
             }
         });
-        jPanel4.add(btnDeleteTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 100, -1));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/tipoDocumento128.png"))); // NOI18N
-        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 128, 128));
 
         tableTDoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -706,56 +755,100 @@ public class UserMembers extends javax.swing.JPanel {
         ));
         jScrollPane7.setViewportView(tableTDoc);
 
-        jPanel4.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 310, 320));
-
-        btnShowTDoc.setText("Mostrar Datos");
-        btnShowTDoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowTDocActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnShowTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 120, -1));
-
         btnSelectTDoc.setText("Seleccionar");
         btnSelectTDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectTDocActionPerformed(evt);
             }
         });
-        jPanel4.add(btnSelectTDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 110, -1));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(233, 233, 233)
+                        .addComponent(btnSelectTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel27)
+                                .addGap(53, 53, 53)
+                                .addComponent(txtCodeTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel28)
+                                .addGap(32, 32, 32)
+                                .addComponent(txtNameTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnUpdateTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(btnDeleteTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel16)))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(btnSelectTDoc))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27)
+                            .addComponent(txtCodeTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28)
+                            .addComponent(txtNameTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdateTDoc)
+                            .addComponent(btnDeleteTDoc))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel16))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         jTabbedPane1.addTab("Modificar Tipo de Documentos", jPanel4);
 
-        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 640, 440));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMostarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarUserActionPerformed
-        modeloUser();
-        this.btnSelectUser.setEnabled(true);
-        this.btnMostarUser.setEnabled(false);
-    }//GEN-LAST:event_btnMostarUserActionPerformed
 
     private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
         seleccionarUser();
     }//GEN-LAST:event_btnSelectUserActionPerformed
-
-    private void btnShowMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMemberActionPerformed
-        modeloMember();
-        this.btnSelectMember.setEnabled(true);
-        this.btnShowMember.setEnabled(false);
-    }//GEN-LAST:event_btnShowMemberActionPerformed
-
-    private void btnShowTUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTUserActionPerformed
-        modeloTUser();
-        this.btnSelectTUser.setEnabled(true);
-        this.btnShowTUser.setEnabled(false);
-    }//GEN-LAST:event_btnShowTUserActionPerformed
-
-    private void btnShowTDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTDocActionPerformed
-        modeloTDoc();
-        this.btnSelectTDoc.setEnabled(true);
-        this.btnShowTDoc.setEnabled(false);
-    }//GEN-LAST:event_btnShowTDocActionPerformed
 
     private void btnSelectMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectMemberActionPerformed
         seleccionarMember();
@@ -801,18 +894,10 @@ public class UserMembers extends javax.swing.JPanel {
         if (modificar) {
             modeloUser.getDataVector().removeAllElements();
             tableUser.updateUI();
-            modeloUser();
+            modeloUser = mt.modeloUsuario();
+            this.tableUser.setModel(modeloUser);
             limpiarUsuario();
-            this.btnUpdateUser.setEnabled(false);
-            this.btnDeleteUser.setEnabled(false);
-
-            this.txtCodeUser.setEnabled(false);
-            this.txtNameUser.setEnabled(false);
-            this.cbTDocUser.setEnabled(false);
-            this.txtNumTDocUser.setEnabled(false);
-            this.txtCorreoUser.setEnabled(false);
-            this.txtPassUser.setEnabled(false);
-            this.cbTipoUser.setEnabled(false);
+            CamposUsuarios(false);
             this.tableUser.setEnabled(true);
         }
     }//GEN-LAST:event_btnUpdateUserActionPerformed
@@ -824,22 +909,10 @@ public class UserMembers extends javax.swing.JPanel {
                 boolean delete = uc.eliminar(idUser);
                 if (delete) {
                     limpiarUsuario();
-                    this.btnUpdateUser.setEnabled(false);
-                    this.btnDeleteUser.setEnabled(false);
-
-                    this.txtCodeUser.setEnabled(false);
-                    this.txtNameUser.setEnabled(false);
-                    this.cbTDocUser.setEnabled(false);
-                    this.txtNumTDocUser.setEnabled(false);
-                    this.txtCorreoUser.setEnabled(false);
-                    this.txtPassUser.setEnabled(false);
-                    this.cbTipoUser.setEnabled(false);
+                    CamposUsuarios(false);
                     modeloUser.removeRow(this.tableUser.getSelectedRow());
                     this.tableUser.setEnabled(true);
                 }
-                break;
-            }
-            case 1 -> {
                 break;
             }
         }
@@ -866,15 +939,10 @@ public class UserMembers extends javax.swing.JPanel {
         if (modificar) {
             modeloMember.getDataVector().removeAllElements();
             tableMember.updateUI();
-            modeloMember();
+            modeloMember = mt.modeloMiembro();
+            this.tableMember.setModel(modeloMember);
             limpiarMiembros();
-            this.btnUpdateMember.setEnabled(false);
-            this.btnDeleteMember.setEnabled(false);
-
-            this.txtCodeMember.setEnabled(false);
-            this.txtNameMember.setEnabled(false);
-            this.cbTDocMember.setEnabled(false);
-            this.txtNumerDocMember.setEnabled(false);
+            CamposMember(false);
             this.tableMember.setEnabled(true);
         }
     }//GEN-LAST:event_btnUpdateMemberActionPerformed
@@ -887,13 +955,7 @@ public class UserMembers extends javax.swing.JPanel {
                 boolean delete = mc.eliminar(idMember);
                 if (delete) {
                     limpiarMiembros();
-                    this.btnUpdateMember.setEnabled(false);
-                    this.btnDeleteMember.setEnabled(false);
-
-                    this.txtCodeMember.setEnabled(false);
-                    this.txtNameMember.setEnabled(false);
-                    this.cbTDocMember.setEnabled(false);
-                    this.txtNumerDocMember.setEnabled(false);
+                    CamposMember(false);
                     modeloMember.removeRow(this.tableMember.getSelectedRow());
                     this.tableMember.setEnabled(true);
                 }
@@ -911,16 +973,12 @@ public class UserMembers extends javax.swing.JPanel {
         if (modificar) {
             modeloTUser.getDataVector().removeAllElements();
             tableTUser.updateUI();
-            modeloTUser();
+            modeloTUser = mt.modeloTUser();
+            this.tableTUser.setModel(modeloTUser);
             limpiarTUser();
-            this.btnDeleteTUser.setEnabled(false);
-            this.btnUpdateTUser.setEnabled(false);
-
-            this.txtCodTUser.setEnabled(false);
-            this.txtNameTUser.setEnabled(false);
+            CamposTUser(false);
             this.tableTUser.setEnabled(true);
             resetComboBox();
-            comprobarComboBox();
         }
     }//GEN-LAST:event_btnUpdateTUserActionPerformed
 
@@ -932,15 +990,10 @@ public class UserMembers extends javax.swing.JPanel {
                 boolean delete = tuc.eliminar(idTUser);
                 if (delete) {
                     limpiarTUser();
-                    this.btnDeleteTUser.setEnabled(false);
-                    this.btnUpdateTUser.setEnabled(false);
-
-                    this.txtCodTUser.setEnabled(false);
-                    this.txtNameTUser.setEnabled(false);
+                    CamposTUser(false);
                     modeloTUser.removeRow(this.tableTUser.getSelectedRow());
                     this.tableTUser.setEnabled(true);
                     resetComboBox();
-                    comprobarComboBox();
                 }
                 break;
             }
@@ -956,16 +1009,12 @@ public class UserMembers extends javax.swing.JPanel {
         if (modificar) {
             modeloTDoc.getDataVector().removeAllElements();
             tableTDoc.updateUI();
-            modeloTDoc();
+            modeloTDoc = mt.modeloTDoc();
+            this.tableTDoc.setModel(modeloTDoc);
             limpiarTDoc();
-            this.btnDeleteTDoc.setEnabled(false);
-            this.btnUpdateTDoc.setEnabled(false);
-
-            this.txtCodeTDoc.setEnabled(false);
-            this.txtNameTDoc.setEnabled(false);
+            CamposTDoc(false);
             this.tableTDoc.setEnabled(true);
             resetComboBox();
-            comprobarComboBox();
         }
     }//GEN-LAST:event_btnUpdateTDocActionPerformed
 
@@ -977,15 +1026,10 @@ public class UserMembers extends javax.swing.JPanel {
                 boolean delete = tdc.eliminar(idTDoc);
                 if (delete) {
                     limpiarTDoc();
-                    this.btnDeleteTDoc.setEnabled(false);
-                    this.btnUpdateTDoc.setEnabled(false);
-
-                    this.txtCodeTDoc.setEnabled(false);
-                    this.txtNameTDoc.setEnabled(false);
+                    CamposTDoc(false);
                     modeloTDoc.removeRow(this.tableTDoc.getSelectedRow());
                     this.tableTDoc.setEnabled(true);
                     resetComboBox();
-                    comprobarComboBox();
                 }
                 break;
             }
@@ -998,14 +1042,10 @@ public class UserMembers extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteTDoc;
     private javax.swing.JButton btnDeleteTUser;
     private javax.swing.JButton btnDeleteUser;
-    private javax.swing.JButton btnMostarUser;
     private javax.swing.JButton btnSelectMember;
     private javax.swing.JButton btnSelectTDoc;
     private javax.swing.JButton btnSelectTUser;
     private javax.swing.JButton btnSelectUser;
-    private javax.swing.JButton btnShowMember;
-    private javax.swing.JButton btnShowTDoc;
-    private javax.swing.JButton btnShowTUser;
     private javax.swing.JButton btnUpdateMember;
     private javax.swing.JButton btnUpdateTDoc;
     private javax.swing.JButton btnUpdateTUser;

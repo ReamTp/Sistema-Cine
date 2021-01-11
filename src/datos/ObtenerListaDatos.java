@@ -232,4 +232,27 @@ public class ObtenerListaDatos {
         return datos;
     }
     
+    public Map peliculasEstreno(){
+        Map<String, Integer> datos = new TreeMap<>();
+        
+        try{
+            consulta = "SELECT p.id_peli, p.nombre_peli FROM peliculas p,";
+            ps = tc.consultaSQL(consulta);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                datos.put(rs.getString("nombre_peli"), rs.getInt("id_peli"));
+            }
+            
+            ps.close();
+            rs.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            ps = null;
+            rs = null;
+            con.desconectar();
+        }
+        
+        return datos;
+    }
 }

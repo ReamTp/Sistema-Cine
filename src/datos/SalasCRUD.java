@@ -40,15 +40,15 @@ public class SalasCRUD {
         return result;
     }
     
-    public boolean modificar(int codigo, String nombre, int tipoDoc, int id) {
+    public boolean modificar(int codigo, String nombre, int capacidad, int id) {
         resp = false;
-        consulta = "UPDATE salas SET id_sala = ?, nombre_sala = ?, nombre_sala = ? WHERE id_sala = ?";
+        consulta = "UPDATE salas SET id_sala = ?, nombre_sala = ?, capacidad = ? WHERE id_sala = ?";
         
         try{
             ps = TC.consultaSQL(consulta);
             ps.setInt(1, codigo);
             ps.setString(2, nombre);
-            ps.setInt(3, tipoDoc);
+            ps.setInt(3, capacidad);
             ps.setInt(4, id);
             if(ps.executeUpdate()>0){
                 resp = true;

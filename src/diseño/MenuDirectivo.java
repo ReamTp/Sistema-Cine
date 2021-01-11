@@ -2,6 +2,7 @@ package diseño;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 import pimportantes.AddData;
@@ -46,6 +47,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JLabel();
         btnOptions = new javax.swing.JLabel();
         imgOpcion = new javax.swing.JLabel();
         separador2 = new javax.swing.JPanel();
@@ -84,6 +86,18 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jLabel1.setText("Name");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
+        btnCerrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrar.setText("          Cerrar Sesión");
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 220, -1));
+
         btnOptions.setBackground(new java.awt.Color(255, 255, 255));
         btnOptions.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnOptions.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,8 +108,8 @@ public class MenuDirectivo extends javax.swing.JFrame {
                 btnOptionsMouseClicked(evt);
             }
         });
-        jPanel1.add(btnOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 220, -1));
-        jPanel1.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 32, 32));
+        jPanel1.add(btnOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 220, -1));
+        jPanel1.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 32, 32));
         jPanel1.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 220, 2));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -163,7 +177,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
 
         jPanel1.add(pnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 223, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 223, 610));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 223, 620));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(674, 50));
@@ -183,7 +197,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 15, 32, 32));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 700, 60));
-        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 700, 550));
+        getContentPane().add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 700, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -210,6 +224,30 @@ public class MenuDirectivo extends javax.swing.JFrame {
     private void titulo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titulo2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_titulo2MouseClicked
+
+    private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
+        try{
+            Properties datos = new Properties(), data = new Properties();
+            datos.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
+            datos.setProperty("nombre", "");
+            datos.setProperty("email", "");
+            datos.setProperty("password", "");
+            
+            datos.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
+            
+            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            data.setProperty("database", "mysql");
+            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
+            
+            Login l = new Login();
+            l.setVisible(true);
+            this.dispose();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnCerrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,6 +286,7 @@ public class MenuDirectivo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAgregar;
+    private javax.swing.JLabel btnCerrar;
     private javax.swing.JLabel btnModificar;
     private javax.swing.JLabel btnOptions;
     private javax.swing.JScrollPane contenedor;

@@ -18,7 +18,6 @@ public class opciones extends javax.swing.JFrame {
             Properties datos = new Properties();
             datos.load(new FileInputStream("src/configuraciones/opciones.properties"));
             String db = datos.getProperty("database");
-            String cr = datos.getProperty("cerrar");
             switch(db){
                 case "mysql" ->{
                     this.opDbMysql.setSelected(true);
@@ -26,10 +25,6 @@ public class opciones extends javax.swing.JFrame {
                 case "oracle" ->{
                     this.opDbOracle.setSelected(true);
                 }
-            }
-            
-            switch(cr){
-                case "no" -> this.btnCerrarSesion.setEnabled(false);
             }
             
         } catch(FileNotFoundException e) {
@@ -51,7 +46,6 @@ public class opciones extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         opDbMysql = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        btnCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
@@ -88,16 +82,6 @@ public class opciones extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/configuracion32.png"))); // NOI18N
 
-        btnCerrarSesion.setBackground(new java.awt.Color(255, 0, 0));
-        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        btnCerrarSesion.setText("Cerrar Sesión");
-        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSesionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -121,10 +105,7 @@ public class opciones extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addComponent(jLabel4)
                         .addGap(8, 8, 8)
-                        .addComponent(opDbMysql))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(btnCerrarSesion)))
+                        .addComponent(opDbMysql)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,9 +129,7 @@ public class opciones extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(opDbMysql)))
-                .addGap(42, 42, 42)
-                .addComponent(btnCerrarSesion)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,31 +180,6 @@ public class opciones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_opDbMysqlActionPerformed
 
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        try{
-            Properties datos = new Properties(), data = new Properties();
-            datos.load(new FileInputStream("src/configuraciones/datosUsuario.properties"));
-            datos.setProperty("nombre", "");
-            datos.setProperty("email", "");
-            datos.setProperty("password", "");
-            
-            datos.store(new FileWriter("src/configuraciones/datosUsuario.properties"),"");
-            
-            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
-            data.setProperty("database", "mysql");
-            data.setProperty("cerrar", "no");
-            data.store(new FileWriter("src/configuraciones/opciones.properties"),"");
-            
-            Login l = new Login();
-            l.setVisible(true);
-            this.dispose();
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -262,7 +216,6 @@ public class opciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

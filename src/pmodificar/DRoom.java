@@ -6,17 +6,20 @@ import entidades.SalasAsociadas;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelosDatos.ModeloTablas;
 
 public class DRoom extends javax.swing.JPanel {
     private DefaultTableModel modeloDRoom;
     private final SalasAsociadasCRUD sac = new SalasAsociadasCRUD();
     private final SetMapData smd = new SetMapData();
+    private final ModeloTablas mt = new ModeloTablas();
     private int idPeli;
 
     public DRoom() {
         initComponents();
+        modeloDRoom();
         comprobarComboBox();
-        desactivarCampos();
+        Campos(false);
     }
 
     private void comprobarComboBox() {
@@ -36,51 +39,16 @@ public class DRoom extends javax.swing.JPanel {
         this.cbRoom.setSelectedIndex(0);
     }
 
-    private void activarCampos() {
-        this.cbMovie.setEnabled(true);
-        this.cbRoom.setEnabled(true);
+    private void Campos(boolean valor) {
+        this.cbMovie.setEnabled(valor);
+        this.cbRoom.setEnabled(valor);
 
-        this.btnUpdate.setEnabled(true);
-        this.btnDelete.setEnabled(true);
-    }
-
-    private void desactivarCampos() {
-        this.cbMovie.setEnabled(false);
-        this.cbRoom.setEnabled(false);
-
-        this.btnUpdate.setEnabled(false);
-        this.btnDelete.setEnabled(false);
-        this.btnSelect.setEnabled(false);
+        this.btnUpdate.setEnabled(valor);
+        this.btnDelete.setEnabled(valor);
     }
 
     private void modeloDRoom() {
-        modeloDRoom = new DefaultTableModel();
-        List<SalasAsociadas> lista = sac.mostrar();
-        String[] registro = new String[2];
-
-        modeloDRoom.addColumn("Sala");
-        modeloDRoom.addColumn("Peliculas");
-
-        for (SalasAsociadas dato : lista) {
-            int codePeli = dato.getCodigoPeli();
-            for (String key : smd.keysMovie) {
-                int valor = smd.lisMovie.get(key);
-                if (codePeli == valor) {
-                    registro[0] = key;
-                    break;
-                }
-            }
-            int codeRoom = dato.getCodigoSala();
-            for (String key : smd.keysRoom) {
-                int valor = smd.lisRoom.get(key);
-                if (codeRoom == valor) {
-                    registro[1] = key;
-                    break;
-                }
-            }
-            modeloDRoom.addRow(registro);
-        }
-
+        modeloDRoom = mt.modeloSalaPeli();
         this.tableRoomMovie.setModel(modeloDRoom);
     }
 
@@ -100,7 +68,7 @@ public class DRoom extends javax.swing.JPanel {
             this.cbRoom.setSelectedItem(codigoSala);
             this.tableRoomMovie.setEnabled(false);
 
-            activarCampos();
+            Campos(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila!!");
         }
@@ -121,7 +89,6 @@ public class DRoom extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRoomMovie = new javax.swing.JTable();
-        btnShow = new javax.swing.JButton();
         btnSelect = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -143,7 +110,7 @@ public class DRoom extends javax.swing.JPanel {
             }
         });
 
-        btnDelete.setText("Eliminar");
+        btnDelete.setText("Desasociar");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -160,7 +127,7 @@ public class DRoom extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -200,13 +167,6 @@ public class DRoom extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableRoomMovie);
 
-        btnShow.setText("Mostrar Datos");
-        btnShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowActionPerformed(evt);
-            }
-        });
-
         btnSelect.setText("Seleccionar");
         btnSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,13 +190,10 @@ public class DRoom extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSelect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
@@ -253,23 +210,15 @@ public class DRoom extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnShow)
+                                .addComponent(btnSelect)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSelect)
-                                .addGap(18, 18, 18)
+                                .addGap(0, 41, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(23, 23, 23)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-        modeloDRoom();
-        this.btnSelect.setEnabled(true);
-        this.btnShow.setEnabled(false);
-    }//GEN-LAST:event_btnShowActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         seleccionar();
@@ -302,11 +251,7 @@ public class DRoom extends javax.swing.JPanel {
             tableRoomMovie.updateUI();
             modeloDRoom();
             resetSelectionData();
-            this.btnUpdate.setEnabled(false);
-            this.btnDelete.setEnabled(false);
-
-            this.cbMovie.setEnabled(false);
-            this.cbRoom.setEnabled(false);
+            Campos(false);
             this.tableRoomMovie.setEnabled(true);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -336,7 +281,6 @@ public class DRoom extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSelect;
-    private javax.swing.JButton btnShow;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbMovie;
     private javax.swing.JComboBox<String> cbRoom;
