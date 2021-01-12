@@ -695,7 +695,7 @@ public class AMovie extends javax.swing.JPanel {
             }
         });
 
-        txtHora.setDateFormatString("HH:mm");
+        txtHora.setDateFormatString("hh:mm");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);

@@ -443,7 +443,7 @@ public class InfoMovie extends javax.swing.JFrame {
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/horarioIcon128.png"))); // NOI18N
 
-        txtHora.setDateFormatString("HH:mm");
+        txtHora.setDateFormatString("hh:mm");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel16.setText("Agregar Nuevo Horario");
