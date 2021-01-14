@@ -19,7 +19,7 @@ public class PayMovie extends javax.swing.JPanel {
     private final SetMapData smd = new SetMapData();
     private Map lisTDoc, lisMovie, lisMPago;
     private double pagoTotal, pagoTotal2;
-    DecimalFormat df = new DecimalFormat("#.00");
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public PayMovie() {
         initComponents();
@@ -91,6 +91,7 @@ public class PayMovie extends javax.swing.JPanel {
         cbMPagoBMem.setEnabled(valor);
         jsCantAdultosBMem.setEnabled(valor);
         jsCantPequesBMem.setEnabled(valor);
+        btnCalcularBMiem.setEnabled(valor);
     }
 
     @SuppressWarnings("unchecked")
@@ -174,7 +175,7 @@ public class PayMovie extends javax.swing.JPanel {
 
         jLabel10.setText("Cantidad de Boletos para Niños:");
 
-        btnAgregar.setText("Agregar");
+        btnAgregar.setText("Pagar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -327,6 +328,11 @@ public class PayMovie extends javax.swing.JPanel {
         jLabel19.setText("Cantidad de Boletos para Niños:");
 
         btnAgregarBMem.setText("Agregar");
+        btnAgregarBMem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarBMemActionPerformed(evt);
+            }
+        });
 
         btnLimpiarBMem.setText("Limpiar");
         btnLimpiarBMem.addActionListener(new java.awt.event.ActionListener() {
@@ -576,7 +582,7 @@ public class PayMovie extends javax.swing.JPanel {
             System.out.println(bBoy);
 
             boolean resp = bcc.agregar(fecha, hora, nombre, idTDoc, nDoc, idMovie, idMPago, pagoTotal, bAdult, bBoy);
-            if (!resp) {
+            if (resp) {
                 limpiarBCliente();
                 this.btnAgregar.setEnabled(false);
             }
@@ -599,6 +605,30 @@ public class PayMovie extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Ingrese un código!!!");
         }
     }//GEN-LAST:event_btnComprobarMemberActionPerformed
+
+    private void btnAgregarBMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBMemActionPerformed
+        int codeMember = this.txtCodeMember.getText().length();
+        
+        if(pagoTotal2 != 0 && codeMember > 0){
+            String fecha = obtenerFecha();
+            String hora = obtenerHora();
+            int id = Integer.parseInt(this.txtCodeMember.getText());
+            int idMovie = smd.ValueTMovie(this.cbMovieBMem.getSelectedItem().toString());
+            double descuento = Double.parseDouble(this.txtDiscount.getText());
+            int idMPago = smd.ValueMPago(this.cbMPagoBMem.getSelectedItem().toString());
+            double precioFinal = pagoTotal2 - (pagoTotal2 * (descuento/100));
+            int bAdult = (int) jsCantAdultosBMem.getValue();
+            int bBoy = (int) jsCantPequesBMem.getValue();
+
+            boolean resp = bmc.agregar(fecha, hora, id, idMovie, pagoTotal2, descuento, idMPago, precioFinal, bAdult, bBoy);
+            if (resp) {
+                limpiarBMiembro();
+                this.btnAgregarBMem.setEnabled(false);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "¡Llene todos los campos!");
+        }
+    }//GEN-LAST:event_btnAgregarBMemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -40,6 +40,29 @@ public class ComidasCRUD {
         return result;
     }
     
+    public double obtenerPrecio(int code){
+        double precio = 0;
+        consulta = "SELECT precio FROM comidas WHERE id_comida = ?";
+        
+        try{
+            ps = TC.consultaSQL(consulta);
+            ps.setInt(1, code);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                precio = rs.getDouble("precio");
+            }
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            ps = null;
+            rs = null;
+            TC.getConexion().desconectar();
+        }
+        
+        return precio;
+    }
+    
     public boolean modificar(int codigo, String nombre, double precio, int id) {
         resp = false;
         consulta = "UPDATE comidas SET id_comida = ?, nombre_comida = ?, precio = ? WHERE id_comida = ?";

@@ -24,7 +24,7 @@ public class BoletasMiembrosCRUD {
             if(rs.next()){
                 resp = true;
             }else{
-                JOptionPane.showMessageDialog(null, "El Usuario no existe");
+                JOptionPane.showMessageDialog(null, "El Miembro no existe");
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
