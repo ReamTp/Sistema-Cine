@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Properties;
 import pimportantes.AddData;
 import pimportantes.ModifyData;
-import pimportantes.Boletas;
 
 public class MenuDirectivo extends javax.swing.JFrame {
     Properties datos = new Properties();
