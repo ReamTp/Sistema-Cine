@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteDrink" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eec1961d-ab38-490d-bb36-39f8dbc60535">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     bebidas.`nombre_bebida` AS Bebida,
+     bebidas.`precio` AS Precio,
+     SUM(lista_bebidas.`cantidad`) AS Cantidad,
+     bebidas.`precio`*SUM(lista_bebidas.`cantidad`) AS Ingreso
+FROM
+     `bebidas` bebidas INNER JOIN `lista_bebidas` lista_bebidas ON bebidas.`id_bebida` = lista_bebidas.`id_bebida`
+     LIMIT 7;]]>
+	</queryString>
+	<field name="Bebida" class="java.lang.String"/>
+	<field name="Precio" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ingreso" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="146" y="0" width="354" height="60" uuid="d34c09f1-b4d0-4b51-8bd8-c06ab798fb5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Boletas de Miembros]]></text>
+			</staticText>
+			<image>
+				<reportElement x="82" y="-3" width="64" height="63" uuid="04eacd7f-dce2-461d-b4b4-65ba14f45555"/>
+				<imageExpression><![CDATA["E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="243" y="0" width="84" height="35" uuid="c9fdc579-83c1-44c1-ba53-d1861b67c9fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Bebidas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="113" y="0" width="100" height="20" uuid="23df2cb5-1eab-4c0e-982a-6d7d1b50b4f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Bebida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="1" width="79" height="20" uuid="c3f618fc-bd16-4a6f-b0fb-b91dc22700e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="1" width="75" height="20" uuid="4cf83299-e2dc-475b-a23a-e9b0d80f816f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="0" width="79" height="20" uuid="f833acd8-c98c-496d-9209-0558e3808dcf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ingreso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="113" y="0" width="100" height="20" uuid="a0a3d866-a6ba-4eea-9dc5-6c4c80e50d87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Bebida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="1" width="79" height="20" uuid="5d7970bb-387d-4ea6-8835-c3e40047ab01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{Precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="1" width="75" height="20" uuid="b3245e14-34d9-40b7-ab8d-a5e4ad360925"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="0" width="79" height="20" uuid="433989cc-9e8e-4e7a-aff1-30f5c46c7540"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{Ingreso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="187" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="146" y="2" width="250" height="185" uuid="4b91246d-f963-4ab1-be2f-38e84bbbc1fc"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{Bebida}]]></keyExpression>
+					<valueExpression><![CDATA[$F{Ingreso}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="213" y="16" width="80" height="20" uuid="a3fb1936-31a1-4eea-a0f9-5ba23e4ff5f0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="293" y="16" width="40" height="20" uuid="94a7032e-e05d-4b0a-a890-7455bf9d8afc"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

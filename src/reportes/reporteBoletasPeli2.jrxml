@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteBoletasPeli2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41300f80-e8fe-4992-81b1-48f06d01df5f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     DATE_FORMAT(boletos_miembros.`fecha`,'%d/%m/%Y') AS Fecha,
+     boletos_miembros.`id_boleto` AS Código,
+     boletos_miembros.`total_pagar` AS Precio,
+     ROUND(boletos_miembros.`descuento`,0) AS Descuento,
+     boletos_miembros.`precio_final` AS PrecioFinal,
+     miembros.`nombre_member` AS Miembro,
+     peliculas.`nombre_peli` AS Pelicula,
+     metodos_pagos.`nombre_mp` AS Metodo
+FROM
+     `miembros` miembros INNER JOIN `boletos_miembros` boletos_miembros ON miembros.`id_miembro` = boletos_miembros.`id_miembro`
+     INNER JOIN `peliculas` peliculas ON boletos_miembros.`id_peli` = peliculas.`id_peli`
+     INNER JOIN `metodos_pagos` metodos_pagos ON boletos_miembros.`id_mp` = metodos_pagos.`id_mp`]]>
+	</queryString>
+	<field name="Fecha" class="java.lang.String"/>
+	<field name="Código" class="java.lang.Integer"/>
+	<field name="Precio" class="java.lang.Double"/>
+	<field name="Descuento" class="java.lang.Double"/>
+	<field name="PrecioFinal" class="java.lang.Double"/>
+	<field name="Miembro" class="java.lang.String"/>
+	<field name="Pelicula" class="java.lang.String"/>
+	<field name="Metodo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement x="205" y="-3" width="64" height="63" uuid="a5cfd38b-647c-4ef0-a72b-b55aa5e2a91d"/>
+				<imageExpression><![CDATA["E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="269" y="0" width="354" height="60" uuid="f6218cb8-8781-4c8e-a2c1-c160a0797823"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Boletas de Miembros]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="39" y="0" width="38" height="20" uuid="b50ecbe2-ba67-4312-b6ac-c09a6ff73de8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="0" width="57" height="20" uuid="febb9db7-ce68-44d1-b60f-6f967f2e087a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="0" width="110" height="20" uuid="d621ce69-a768-4c64-8101-be8225416575"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Miembro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="0" width="112" height="20" uuid="9abb2254-619c-452c-bc69-bb5f2f696298"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Pelicula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="0" width="83" height="20" uuid="4ae34bc1-c0b9-4195-81e7-47254944b86f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Descuento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="0" width="90" height="20" uuid="123eed58-ca30-4a96-9fa3-23bb92375eb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="0" width="100" height="20" uuid="31555233-252e-46c6-a980-121115f13103"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Metodo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="629" y="0" width="100" height="20" uuid="ad1695ca-b6b1-4484-89f1-5d84e09480ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PrecioFinal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="39" y="0" width="38" height="20" uuid="61bc8b5e-1031-4365-beae-f0a9ccacafc8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Código}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="57" height="20" uuid="7a96d3c4-948e-48a8-bbb7-9b06fcc74d30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="0" width="110" height="20" uuid="d868d7e3-fa70-4cb4-b5b6-3902839f2f64"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Miembro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="0" width="112" height="20" uuid="7311db92-d64e-4f87-adad-6f620332c06d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Pelicula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="0" width="83" height="20" uuid="0b24a27a-1932-469f-a58c-7f8033583605"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Descuento}+"%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="0" width="90" height="20" uuid="93cbe613-9a53-47a1-b3a7-5279d91647a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{Precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="0" width="100" height="20" uuid="666ee07b-4fba-4206-a48b-d693bb460009"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Metodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="629" y="0" width="100" height="20" uuid="a6884b8c-ae0a-4653-9522-f7891f7c68ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{PrecioFinal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="338" y="15" width="80" height="20" uuid="be958713-126b-4aba-83b1-f2a0a303d9de"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="418" y="15" width="40" height="20" uuid="51d4abff-592b-4afd-a100-4be2c26de51f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

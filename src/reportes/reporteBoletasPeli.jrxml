@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteBoletasPeli" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba54ae06-0b1e-4fbb-935e-647af091e337">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     boletos_clientes.`id_boleto` AS boletos_clientes_id_boleto,
+     DATE_FORMAT(boletos_clientes.`fecha`, '%d/%m/%Y') AS boletos_clientes_fecha,
+     boletos_clientes.`nombre_cli` AS boletos_clientes_nombre_cli,
+     boletos_clientes.`num_doc` AS boletos_clientes_num_doc,
+     boletos_clientes.`precio_final` AS boletos_clientes_precio_final,
+     peliculas.`nombre_peli` AS peliculas_nombre_peli,
+     metodos_pagos.`nombre_mp` AS metodos_pagos_nombre_mp,
+     tipo_documentos.`nombre_type_doc` AS tipo_documentos_nombre_type_doc
+FROM
+     `peliculas` peliculas INNER JOIN `boletos_clientes` boletos_clientes ON peliculas.`id_peli` = boletos_clientes.`id_peli`
+     INNER JOIN `metodos_pagos` metodos_pagos ON boletos_clientes.`id_mp` = metodos_pagos.`id_mp`
+     INNER JOIN `tipo_documentos` tipo_documentos ON boletos_clientes.`id_tipo_doc` = tipo_documentos.`id_tipo_doc`]]>
+	</queryString>
+	<field name="boletos_clientes_id_boleto" class="java.lang.Integer"/>
+	<field name="boletos_clientes_fecha" class="java.lang.String"/>
+	<field name="boletos_clientes_nombre_cli" class="java.lang.String"/>
+	<field name="boletos_clientes_num_doc" class="java.lang.Integer"/>
+	<field name="boletos_clientes_precio_final" class="java.lang.Double"/>
+	<field name="peliculas_nombre_peli" class="java.lang.String"/>
+	<field name="metodos_pagos_nombre_mp" class="java.lang.String"/>
+	<field name="tipo_documentos_nombre_type_doc" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="142" y="3" width="339" height="60" uuid="ab1c1a95-668c-4980-8e99-fcc7d2d33a35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Boletas de Clientes]]></text>
+			</staticText>
+			<image>
+				<reportElement x="78" y="0" width="64" height="63" uuid="ff90b737-2a92-4a6d-a669-ac9d6140790e"/>
+				<imageExpression><![CDATA["E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="36" height="20" uuid="d9559a3c-eaed-4713-a105-7b4e825c7672"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="0" width="55" height="20" uuid="1d2cbf38-d64b-414e-9b38-7c4e748249eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="0" width="68" height="20" uuid="8fad93b6-0072-4cb2-b991-a5eb4cbe4ec2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="0" width="62" height="20" uuid="69128f21-15f3-4dc5-836c-c5e24fb41d0d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tipo Doc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="0" width="76" height="20" uuid="b8afc551-fa2c-48b1-9066-edd0dfe58281"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Numero de Doc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="0" width="104" height="20" uuid="8ef111e7-194d-49da-8698-0ece24189be2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Pelicula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="0" width="81" height="20" uuid="2ab6eaa3-c841-44d3-9993-b7870bae7de3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Metodo de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="0" width="73" height="20" uuid="2ffda78c-f3ca-44c2-911b-7222a39c2b60"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Pago]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="20" uuid="8eb5dbab-1299-47fb-a581-294a1771501b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{boletos_clientes_id_boleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="0" width="55" height="20" uuid="7ec72e0e-8c3e-41c8-bc73-007ff4069116"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{boletos_clientes_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="0" width="68" height="20" uuid="ea90c6a1-1bf3-48e2-b851-3d7b1d98b854"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{boletos_clientes_nombre_cli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="62" height="20" uuid="f6a557ad-ab58-4aa6-aed5-58d2cec55988"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tipo_documentos_nombre_type_doc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="76" height="20" uuid="09d0f982-ac2e-48fa-b89b-8a1aa13fead2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{boletos_clientes_num_doc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="0" width="104" height="20" uuid="5524fdb7-b4e0-4da4-a9ab-7281200ddb6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{peliculas_nombre_peli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="81" height="20" uuid="175fa0e7-6130-40bc-ac01-2b828e9d6802"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{metodos_pagos_nombre_mp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="0" width="73" height="20" uuid="8d3c48ee-ae7e-47f7-bce1-06e569829934"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{boletos_clientes_precio_final}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="211" y="15" width="80" height="20" uuid="988f9d40-0085-4a66-9ec0-1f814a3f7059"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="291" y="15" width="40" height="20" uuid="aae08e4e-f52d-441d-ac7e-2b805d5eec5d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteMás Vendidos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15119cdc-f72b-471d-a335-579002740c92">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Proyecto\\Sistema-Cine\\src\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     comidas.`nombre_comida` AS Comida,
+     comidas.`precio` AS Precio,
+     SUM(lista_comida.`cantidad`) AS Cantidad,
+     comidas.`precio`*SUM(lista_comida.`cantidad`) AS Ingreso
+FROM
+     `comidas` comidas INNER JOIN `lista_comida` lista_comida ON comidas.`id_comida` = lista_comida.`id_comida`
+     LIMIT 7;]]>
+	</queryString>
+	<field name="Comida" class="java.lang.String"/>
+	<field name="Precio" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ingreso" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<image>
+				<reportElement x="22" y="0" width="64" height="63" uuid="d245fd7c-3fec-4e53-a2d0-34453c1b3cab"/>
+				<imageExpression><![CDATA["E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="86" y="3" width="466" height="60" uuid="eeb0bcdd-38db-4d77-b48f-a0eb8675ff5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Consumibles más vendidos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="218" y="11" width="107" height="22" uuid="6ef1e3ba-f795-4700-94a6-15b721e5e54f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Comidas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="86" y="0" width="100" height="20" uuid="35c44fdf-b4e7-456c-943b-d31ed4d83aab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Comida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="0" width="100" height="20" uuid="4e9bcf0e-7957-4b2d-8698-b1b94d2f26d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="0" width="100" height="20" uuid="6994f528-a9d1-4558-85b7-8fd28ae9003d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="0" width="100" height="20" uuid="bc7c8bd7-edb6-4b38-9685-c0b19b18b579"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ingreso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="86" y="0" width="100" height="20" uuid="7b8f86de-79fc-432f-b1ba-e55814e78577"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Comida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="0" width="100" height="20" uuid="51ff4b03-5a88-4c60-a510-1f0883de6910"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{Precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="100" height="20" uuid="79f07428-1828-4dc7-9d58-958e81ec4e8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="100" height="20" uuid="bc3aae6a-fc64-4e76-bad9-7f88082fc152"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/"+$F{Ingreso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="173" splitType="Stretch">
+			<elementGroup>
+				<pieChart>
+					<chart>
+						<reportElement x="137" y="0" width="276" height="173" uuid="bc94b3d5-c17f-4d75-969b-07b67b0716f4"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<keyExpression><![CDATA[$F{Comida}]]></keyExpression>
+						<valueExpression><![CDATA[$F{Ingreso}]]></valueExpression>
+					</pieDataset>
+					<piePlot>
+						<plot/>
+						<itemLabel/>
+					</piePlot>
+				</pieChart>
+			</elementGroup>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="218" y="16" width="80" height="20" uuid="d3d04422-db33-436a-8d80-93e6501565e3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="298" y="16" width="40" height="20" uuid="05564691-9002-40df-864e-a89dfc4cfb5d"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

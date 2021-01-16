@@ -3,6 +3,7 @@ package database;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Properties;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -16,6 +17,21 @@ public class TipoConexion {
     public TipoConexion(){
         CON = Conexion.getInstancia();
         result = comprobarDB();
+    }
+    
+    public Connection conectar(){
+        Connection cadena = null;
+        switch(result){
+            case 1 -> {
+                cadena = CON.conectarMySQL();
+                break;
+            }
+            case 2 -> {
+                cadena = CON.conectarOracle();
+                break;
+            }
+        }
+        return cadena;
     }
     
     public Conexion getConexion(){

@@ -16,11 +16,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgUsuario, "src\\diseño\\imagenes\\usuarioIcon.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgEntrada, "src\\diseño\\imagenes\\entradaIcon.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgComida, "src\\diseño\\imagenes\\comidaIcon.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
         ObtenerNombre();
     }
         
@@ -66,7 +61,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         pnCerrar = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JLabel();
         titulo4 = new javax.swing.JLabel();
-        imgOpcion1 = new javax.swing.JLabel();
+        imgCerrarSesion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imgUsuario = new javax.swing.JLabel();
         lbNombreA = new javax.swing.JLabel();
@@ -96,6 +91,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 180, 2));
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 180, 2));
+
+        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/logoIcon.png"))); // NOI18N
         jPanel1.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 64, 64));
 
         pnEntradas.setBackground(new java.awt.Color(69, 179, 157));
@@ -108,6 +105,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEntradaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEntradaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEntradaMouseExited(evt);
+            }
         });
         pnEntradas.add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
 
@@ -117,6 +120,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         titulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnEntradas.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
 
+        imgEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/entradaIcon.png"))); // NOI18N
         imgEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnEntradas.add(imgEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -132,6 +136,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnComidaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnComidaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnComidaMouseExited(evt);
+            }
         });
         pnComidas.add(btnComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
 
@@ -141,6 +151,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         titulo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnComidas.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
 
+        imgComida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/comidaIcon.png"))); // NOI18N
         imgComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnComidas.add(imgComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -156,6 +167,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOpcionesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnOpcionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnOpcionesMouseExited(evt);
+            }
         });
         pnOpciones.add(btnOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
 
@@ -170,6 +187,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         });
         pnOpciones.add(titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
 
+        imgOpcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/opcionesIcon.png"))); // NOI18N
         imgOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnOpciones.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -185,6 +203,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCerrarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseExited(evt);
+            }
         });
         pnCerrar.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 50));
 
@@ -199,8 +223,9 @@ public class MenuEmpleado extends javax.swing.JFrame {
         });
         pnCerrar.add(titulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
 
-        imgOpcion1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnCerrar.add(imgOpcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
+        imgCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/cerrarSesionIcon.png"))); // NOI18N
+        imgCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnCerrar.add(imgCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
         jPanel1.add(pnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 180, 50));
 
@@ -208,6 +233,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/usuarioIcon.png"))); // NOI18N
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 16, 32, 32));
 
         lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -275,6 +302,38 @@ public class MenuEmpleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_titulo4MouseClicked
 
+    private void btnEntradaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntradaMouseEntered
+        this.pnEntradas.setBackground(new java.awt.Color(69, 205, 165));
+    }//GEN-LAST:event_btnEntradaMouseEntered
+
+    private void btnEntradaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntradaMouseExited
+        this.pnEntradas.setBackground(new java.awt.Color(69, 179, 157));
+    }//GEN-LAST:event_btnEntradaMouseExited
+
+    private void btnComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComidaMouseEntered
+        this.pnComidas.setBackground(new java.awt.Color(69, 205, 165));
+    }//GEN-LAST:event_btnComidaMouseEntered
+
+    private void btnComidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComidaMouseExited
+        this.pnComidas.setBackground(new java.awt.Color(69, 179, 157));
+    }//GEN-LAST:event_btnComidaMouseExited
+
+    private void btnOpcionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpcionesMouseEntered
+        this.pnOpciones.setBackground(new java.awt.Color(69, 205, 165));
+    }//GEN-LAST:event_btnOpcionesMouseEntered
+
+    private void btnOpcionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpcionesMouseExited
+        this.pnOpciones.setBackground(new java.awt.Color(69, 179, 157));
+    }//GEN-LAST:event_btnOpcionesMouseExited
+
+    private void btnCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseEntered
+        this.pnCerrar.setBackground(new java.awt.Color(69, 205, 165));
+    }//GEN-LAST:event_btnCerrarMouseEntered
+
+    private void btnCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseExited
+        this.pnCerrar.setBackground(new java.awt.Color(69, 179, 157));
+    }//GEN-LAST:event_btnCerrarMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -317,11 +376,11 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel btnEntrada;
     private javax.swing.JLabel btnOpciones;
     private javax.swing.JScrollPane contenedor;
+    private javax.swing.JLabel imgCerrarSesion;
     private javax.swing.JLabel imgComida;
     private javax.swing.JLabel imgEntrada;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel imgOpcion;
-    private javax.swing.JLabel imgOpcion1;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
