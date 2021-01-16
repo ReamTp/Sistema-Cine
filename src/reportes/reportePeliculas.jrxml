@@ -1,27 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePeliculas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96e07951-3c3b-44be-a876-08f966f4fa66">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+	peliculas.nombre_peli AS "Nombre",
+    COUNT(boletos_clientes.id_peli) + COUNT(boletos_miembros.id_peli) AS "Veces Vista"
+FROM peliculas, boletos_clientes, boletos_miembros
+WHERE peliculas.id_peli = boletos_clientes.id_peli AND
+peliculas.id_peli = boletos_miembros.id_peli;]]>
+	</queryString>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="Veces Vista" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="0" width="354" height="60" uuid="88d21c51-509d-405e-a22a-9876f75965d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Boletas de Miembros]]></text>
+			</staticText>
+			<image>
+				<reportElement x="85" y="-3" width="64" height="63" uuid="841ed80f-8738-4c35-86ce-24d1e188966f"/>
+				<imageExpression><![CDATA["E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png"]]></imageExpression>
+			</image>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="134" y="0" width="270" height="35" uuid="a7e2e0ed-905d-4552-9ac1-808677920229"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Peliculas más solicitadas]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="0" width="141" height="20" uuid="ae52f6c0-a3fa-4b67-8de8-81fc927107f7"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="100" height="20" uuid="45be9d52-17e7-4cd0-b72f-904d4ca4aa39"/>
+				<text><![CDATA[Veces Vista]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="149" y="0" width="141" height="20" uuid="223a233e-d35b-471d-85a2-78c3a78414a3"/>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="100" height="20" uuid="562606e2-261b-4f5b-a531-190b7a08b3db"/>
+				<textFieldExpression><![CDATA[$F{Veces Vista}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="178" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="134" y="15" width="270" height="153" uuid="04583531-25c2-4258-acd9-e0838f308292"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{Nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{Veces Vista}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>
