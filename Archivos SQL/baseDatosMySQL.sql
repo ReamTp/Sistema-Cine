@@ -6,13 +6,13 @@
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`comidas`(
 	id_comida INT PRIMARY KEY NOT NULL,
     nombre_comida VARCHAR(50),
-    precio DOUBLE(5,2)
+    precio DOUBLE(7,2)
 );
 
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`bebidas`(
 	id_bebida INT PRIMARY KEY NOT NULL,
     nombre_bebida VARCHAR(50),
-    precio DOUBLE(5,2)
+    precio DOUBLE(7,2)
 );
 
 -- Metodos de Pagos
@@ -130,13 +130,11 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_miembros`(
     CONSTRAINT fk_miembro FOREIGN KEY (id_miembro) REFERENCES miembros(id_miembro),
     id_peli INT,
     CONSTRAINT fk_peli FOREIGN KEY (id_peli) REFERENCES peliculas(id_peli),
-    id_sala INT,
-    CONSTRAINT fk_sala FOREIGN KEY (id_sala) REFERENCES salas(id_sala),
-    total_pagar DOUBLE(5,2),
-    descuento DOUBLE(3,2),
+    total_pagar DOUBLE(7,2),
+    descuento DOUBLE(5,2),
     id_mp INT,
     CONSTRAINT fk_mp FOREIGN KEY (id_mp) REFERENCES metodos_pagos(id_mp),
-    precio_final DOUBLE(5,2)
+    precio_final DOUBLE(7,2)
 );
 
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_clientes`(
@@ -149,11 +147,9 @@ CREATE TABLE IF NOT EXISTS `dbsistemacine`.`boletos_clientes`(
     num_doc INT,
     id_peli INT,
     CONSTRAINT fk_id_peli4 FOREIGN KEY (id_peli) REFERENCES peliculas(id_peli),
-    id_sala INT,
-    CONSTRAINT fk_id_sala3 FOREIGN KEY (id_sala) REFERENCES salas(id_sala),
     id_mp INT,
     CONSTRAINT fk_id_mp3 FOREIGN KEY (id_mp) REFERENCES metodos_pagos(id_mp),
-    precio_final DOUBLE(5,2)
+    precio_final DOUBLE(7,2)
 );
 
 CREATE TABLE IF NOT EXISTS `dbsistemacine`.`cant_bol_cli`(
