@@ -17,6 +17,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         rsscalelabel.RSScaleLabel.setScaleLabel(imgCine, "src\\diseño\\imagenes\\Cine.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(btnOpciones, "src\\diseño\\imagenes\\configuracion32.png");
         setLocationRelativeTo(null);
     }
     
@@ -106,8 +108,6 @@ public class Login extends javax.swing.JFrame {
 
         txtcontraseña.setBorder(null);
         jPanel2.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 210, -1));
-
-        imgLogo.setIcon(new javax.swing.ImageIcon("E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png")); // NOI18N
         jPanel2.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 64, 64));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 280, 360));
@@ -133,7 +133,6 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnOpciones.setIcon(new javax.swing.ImageIcon("E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\opcionesIcon.png")); // NOI18N
         btnOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
