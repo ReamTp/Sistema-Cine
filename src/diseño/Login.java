@@ -107,7 +107,7 @@ public class Login extends javax.swing.JFrame {
         txtcontraseña.setBorder(null);
         jPanel2.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 210, -1));
 
-        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/logoIcon.png"))); // NOI18N
+        imgLogo.setIcon(new javax.swing.ImageIcon("E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\logoIcon.png")); // NOI18N
         jPanel2.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 64, 64));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 280, 360));
