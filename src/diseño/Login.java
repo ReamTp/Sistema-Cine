@@ -16,7 +16,6 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(imgCine, "src\\diseño\\imagenes\\Cine.png");
         setLocationRelativeTo(null);
     }
@@ -107,6 +106,8 @@ public class Login extends javax.swing.JFrame {
 
         txtcontraseña.setBorder(null);
         jPanel2.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 210, -1));
+
+        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/logoIcon.png"))); // NOI18N
         jPanel2.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 64, 64));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 280, 360));
@@ -121,7 +122,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 36)); // NOI18N
         jLabel5.setText("Cine");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-        jPanel1.add(imgCine, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 310, 290));
+        jPanel1.add(imgCine, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 330, 290));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setText("\"El mejor cine para el mejor público\"");
