@@ -133,7 +133,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/configuracion32.png"))); // NOI18N
+        btnOpciones.setIcon(new javax.swing.ImageIcon("E:\\Proyecto\\Sistema-Cine\\src\\diseño\\imagenes\\opcionesIcon.png")); // NOI18N
         btnOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
