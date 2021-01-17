@@ -15,6 +15,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
     
     public MenuEmpleado() {
         initComponents();
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgEntrada, "src\\diseño\\imagenes\\entradaIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgComida, "src\\diseño\\imagenes\\comidaIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgCerrarSesion, "src\\diseño\\imagenes\\cerrarSesionIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgUsuario, "src\\diseño\\imagenes\\usuarioIcon.png");
         setLocationRelativeTo(null);
         ObtenerNombre();
     }
@@ -91,8 +97,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 180, 2));
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 180, 2));
-
-        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/logoIcon.png"))); // NOI18N
         jPanel1.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 64, 64));
 
         pnEntradas.setBackground(new java.awt.Color(69, 179, 157));
@@ -120,7 +124,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         titulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnEntradas.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
 
-        imgEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/entradaIcon.png"))); // NOI18N
         imgEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnEntradas.add(imgEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -151,7 +154,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         titulo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnComidas.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
 
-        imgComida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/comidaIcon.png"))); // NOI18N
         imgComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnComidas.add(imgComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -187,7 +189,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         });
         pnOpciones.add(titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
 
-        imgOpcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/opcionesIcon.png"))); // NOI18N
         imgOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnOpciones.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -223,7 +224,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         });
         pnCerrar.add(titulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
 
-        imgCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/cerrarSesionIcon.png"))); // NOI18N
         imgCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnCerrar.add(imgCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
@@ -233,8 +233,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/usuarioIcon.png"))); // NOI18N
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 16, 32, 32));
 
         lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

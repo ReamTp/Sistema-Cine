@@ -25,6 +25,10 @@ public class InfoMovie extends javax.swing.JFrame {
     public InfoMovie() {
         initComponents();
         setLocationRelativeTo(null);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgSala, "src\\diseño\\imagenes\\salaCineIcon128.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgHorario, "src\\diseño\\imagenes\\horarioIcon128.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgCategoria, "src\\diseño\\imagenes\\categoriaIcon128.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgEstreno, "src\\diseño\\imagenes\\estrenoIcon128.png");
         comprobarComboBox();
         modeloTablas();
     }
@@ -141,7 +145,7 @@ public class InfoMovie extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnAddRoom = new javax.swing.JButton();
         btnLimpiarRoom = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        imgSala = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableRoom = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
@@ -153,7 +157,7 @@ public class InfoMovie extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         btnAddHour = new javax.swing.JButton();
         btnLimpiarHour = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
+        imgHorario = new javax.swing.JLabel();
         txtHora = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -167,7 +171,7 @@ public class InfoMovie extends javax.swing.JFrame {
         txtDescriptionCategory = new javax.swing.JTextArea();
         btnAddCategory = new javax.swing.JButton();
         btnLimpiarCategoria = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        imgCategoria = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableCategoria = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
@@ -178,7 +182,7 @@ public class InfoMovie extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         btnAddEstreno = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
+        imgEstreno = new javax.swing.JLabel();
         txtFechaEstreno = new com.toedter.calendar.JDateChooser();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableEstreno = new javax.swing.JTable();
@@ -338,8 +342,6 @@ public class InfoMovie extends javax.swing.JFrame {
         btnLimpiarRoom.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnLimpiarRoom.setText("Limpiar");
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/salaCineIcon128.png"))); // NOI18N
-
         tableRoom.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -364,7 +366,7 @@ public class InfoMovie extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(imgSala, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,7 +416,7 @@ public class InfoMovie extends javax.swing.JFrame {
                             .addComponent(btnAddRoom)
                             .addComponent(btnLimpiarRoom))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(imgSala, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -440,8 +442,6 @@ public class InfoMovie extends javax.swing.JFrame {
 
         btnLimpiarHour.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnLimpiarHour.setText("Limpiar");
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/horarioIcon128.png"))); // NOI18N
 
         txtHora.setDateFormatString("hh:mm");
 
@@ -470,7 +470,7 @@ public class InfoMovie extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(jLabel17)
+                        .addComponent(imgHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,7 +514,7 @@ public class InfoMovie extends javax.swing.JFrame {
                             .addComponent(btnAddHour)
                             .addComponent(btnLimpiarHour, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel17)
+                        .addComponent(imgHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -551,8 +551,6 @@ public class InfoMovie extends javax.swing.JFrame {
 
         btnLimpiarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnLimpiarCategoria.setText("Limpiar");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/categoriaIcon128.png"))); // NOI18N
 
         tableCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -606,7 +604,7 @@ public class InfoMovie extends javax.swing.JFrame {
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(imgCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)))
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -633,7 +631,7 @@ public class InfoMovie extends javax.swing.JFrame {
                     .addComponent(btnAddCategory)
                     .addComponent(btnLimpiarCategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imgCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
@@ -657,8 +655,6 @@ public class InfoMovie extends javax.swing.JFrame {
                 btnAddEstrenoActionPerformed(evt);
             }
         });
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/estrenoIcon128.png"))); // NOI18N
 
         txtFechaEstreno.setDateFormatString("dd MM yyyy");
 
@@ -698,7 +694,7 @@ public class InfoMovie extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAddEstreno)
-                            .addComponent(jLabel21))
+                            .addComponent(imgEstreno, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(86, 86, 86)))
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
@@ -722,7 +718,7 @@ public class InfoMovie extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(btnAddEstreno)
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel21)))
+                        .addComponent(imgEstreno, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -920,20 +916,20 @@ public class InfoMovie extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbCategoryMovie;
     private javax.swing.JComboBox<String> cbHourMovie;
     private javax.swing.JComboBox<String> cbMovie;
+    private javax.swing.JLabel imgCategoria;
+    private javax.swing.JLabel imgEstreno;
+    private javax.swing.JLabel imgHorario;
+    private javax.swing.JLabel imgSala;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;

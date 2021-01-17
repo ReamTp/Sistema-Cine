@@ -10,6 +10,9 @@ public class opciones extends javax.swing.JFrame {
     public opciones() {
         initComponents();
         setLocationRelativeTo(null);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogoTitle, "src\\diseño\\imagenes\\configuracion32.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgDBOracle, "src\\diseño\\imagenes\\oracle.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgDBMySQL, "src\\diseño\\imagenes\\mysql.png");
         comprobarCarga();
         this.opDbMysql.setEnabled(false);
         this.opDbOracle.setEnabled(false);
@@ -44,10 +47,10 @@ public class opciones extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         opDbOracle = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        imgDBOracle = new javax.swing.JLabel();
+        imgDBMySQL = new javax.swing.JLabel();
         opDbMysql = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
+        imgLogoTitle = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -71,10 +74,6 @@ public class opciones extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/oracle.png"))); // NOI18N
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/mysql.png"))); // NOI18N
-
         opDbMysql.setBackground(new java.awt.Color(255, 255, 255));
         opDbMysql.setText("MySQL DataBase");
         opDbMysql.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +81,6 @@ public class opciones extends javax.swing.JFrame {
                 opDbMysqlActionPerformed(evt);
             }
         });
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/configuracion32.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 102, 102));
@@ -95,7 +92,7 @@ public class opciones extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imgLogoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(135, 135, 135))
@@ -103,11 +100,11 @@ public class opciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel3)
+                        .addComponent(imgDBOracle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(opDbOracle)
                         .addGap(65, 65, 65)
-                        .addComponent(jLabel4)
+                        .addComponent(imgDBMySQL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(opDbMysql))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -123,18 +120,18 @@ public class opciones extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imgLogoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel3))
+                        .addComponent(imgDBOracle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(opDbOracle))
-                    .addComponent(jLabel4)
+                    .addComponent(imgDBMySQL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(opDbMysql)))
@@ -227,12 +224,12 @@ public class opciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel imgDBMySQL;
+    private javax.swing.JLabel imgDBOracle;
+    private javax.swing.JLabel imgLogoTitle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JCheckBox opDbMysql;
     private javax.swing.JCheckBox opDbOracle;

@@ -10,11 +10,18 @@ import pimportantes.ModifyData;
 import pimportantes.Reportes;
 
 public class MenuDirectivo extends javax.swing.JFrame {
-    private Properties datos = new Properties();
+    private final Properties datos = new Properties();
     private String name;
     
     public MenuDirectivo() {
         initComponents();
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgLogo, "src\\diseño\\imagenes\\logoIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgAgregar, "src\\diseño\\imagenes\\agregarIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgEditar, "src\\diseño\\imagenes\\editarIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgReporte, "src\\diseño\\imagenes\\reporteIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgOpcion, "src\\diseño\\imagenes\\opcionesIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgCerrar, "src\\diseño\\imagenes\\cerrarSesionIcon.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgUsuario, "src\\diseño\\imagenes\\usuarioIcon.png");
         setLocationRelativeTo(null);
         ObtenerNombre();
     }
@@ -109,8 +116,6 @@ public class MenuDirectivo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 220, -1));
-
-        imgOpcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/opcionesIcon.png"))); // NOI18N
         jPanel1.add(imgOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 32, 32));
         jPanel1.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 220, 2));
 
@@ -119,8 +124,6 @@ public class MenuDirectivo extends javax.swing.JFrame {
         jLabel6.setText("Datos del Sistema");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
         jPanel1.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 220, 2));
-
-        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/logoIcon.png"))); // NOI18N
         jPanel1.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 64, 64));
 
         pnAgregar.setBackground(new java.awt.Color(205, 97, 85));
@@ -162,8 +165,6 @@ public class MenuDirectivo extends javax.swing.JFrame {
             }
         });
         pnAgregar.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 140, -1));
-
-        imgAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/agregarIcon.png"))); // NOI18N
         pnAgregar.add(imgAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
         jPanel1.add(pnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 223, 50));
@@ -199,8 +200,6 @@ public class MenuDirectivo extends javax.swing.JFrame {
             }
         });
         pnModificar.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 160, -1));
-
-        imgEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/editarIcon.png"))); // NOI18N
         pnModificar.add(imgEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
         jPanel1.add(pnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 223, 50));
@@ -236,13 +235,9 @@ public class MenuDirectivo extends javax.swing.JFrame {
             }
         });
         pnReportes.add(titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
-
-        imgReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/reporteIcon.png"))); // NOI18N
         pnReportes.add(imgReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
         jPanel1.add(pnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 332, 223, 50));
-
-        imgCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/cerrarSesionIcon.png"))); // NOI18N
         jPanel1.add(imgCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 32, 32));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 223, 620));
@@ -262,8 +257,6 @@ public class MenuDirectivo extends javax.swing.JFrame {
         lbNombreA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbNombreA.setText("Nombre Directivo");
         jPanel2.add(lbNombreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
-
-        imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/usuarioIcon.png"))); // NOI18N
         jPanel2.add(imgUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 15, 32, 32));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 700, 60));
