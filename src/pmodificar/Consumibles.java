@@ -22,6 +22,15 @@ public class Consumibles extends javax.swing.JPanel {
         CamposComidas(false);
         CamposBebidas(false);
         modeloTablas();
+        generarImagenes();
+    }
+    
+    private void generarImagenes(){
+        jLabel5.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel5, "src\\diseño\\imagenes\\comidaIcon128.png");
+        
+        jLabel9.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel9, "src\\diseño\\imagenes\\bebidaIcon128.png");
     }
 
     private void CamposComidas(boolean valor) {
@@ -157,8 +166,6 @@ public class Consumibles extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/comidaIcon128.png"))); // NOI18N
-
         btnUpdateFood.setText("Modificar");
         btnUpdateFood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,8 +255,6 @@ public class Consumibles extends javax.swing.JPanel {
         jTabbedPane1.addTab("Editar Comidas", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/bebidaIcon128.png"))); // NOI18N
 
         btnSelectDrink.setText("Seleccionar");
         btnSelectDrink.addActionListener(new java.awt.event.ActionListener() {

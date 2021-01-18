@@ -1,14 +1,34 @@
 package pimportantes;
 
 import java.awt.Color;
-import jfagregar.*;
 import reportes.generarReportes;
 
 public class Reportes extends javax.swing.JPanel {
-    private generarReportes gr = new generarReportes();
+    private final generarReportes gr = new generarReportes();
     
     public Reportes() {
         initComponents();
+        generarImagenes();
+    }
+    
+    public final void generarImagenes(){
+        imgBoletaCli.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgBoletaCli, "src\\diseño\\imagenes\\boletoCliIcon.png");
+        
+        imgBoletaMem.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgBoletaMem, "src\\diseño\\imagenes\\boletoMemIcon.png");
+        
+        imgMember.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgMember, "src\\diseño\\imagenes\\memberIcon.png");
+        
+        imgDrink.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgDrink, "src\\diseño\\imagenes\\bebidaIcon.png");
+        
+        imgFood.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgFood, "src\\diseño\\imagenes\\palomitasIcon.png");
+        
+        imgPeliculas.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgPeliculas, "src\\diseño\\imagenes\\peliculaCineIcon.png");
     }
 
     @SuppressWarnings("unchecked")
@@ -83,8 +103,6 @@ public class Reportes extends javax.swing.JPanel {
             }
         });
         pnBoletaCli.add(btnBoletaCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 154, 154));
-
-        imgBoletaCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/boletoCliIcon.png"))); // NOI18N
         pnBoletaCli.add(imgBoletaCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 36, 64, 64));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -110,8 +128,6 @@ public class Reportes extends javax.swing.JPanel {
             }
         });
         pnBoletaMem.add(btnBoletaMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 154, 154));
-
-        imgBoletaMem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/boletoMemIcon.png"))); // NOI18N
         pnBoletaMem.add(imgBoletaMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 36, 64, 64));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -137,8 +153,6 @@ public class Reportes extends javax.swing.JPanel {
             }
         });
         pnMember.add(btnMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 154, 154));
-
-        imgMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/memberIcon.png"))); // NOI18N
         pnMember.add(imgMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 36, 64, 64));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -164,8 +178,6 @@ public class Reportes extends javax.swing.JPanel {
             }
         });
         pnDrink.add(btnDrink, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 154, 154));
-
-        imgDrink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/bebidaIcon.png"))); // NOI18N
         pnDrink.add(imgDrink, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 36, 64, 64));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -191,8 +203,6 @@ public class Reportes extends javax.swing.JPanel {
             }
         });
         pnFood.add(btnFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 154, 154));
-
-        imgFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/palomitasIcon.png"))); // NOI18N
         pnFood.add(imgFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 36, 64, 64));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -218,8 +228,6 @@ public class Reportes extends javax.swing.JPanel {
             }
         });
         pnPeliculas.add(btnPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 154, 154));
-
-        imgPeliculas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/peliculaCineIcon.png"))); // NOI18N
         pnPeliculas.add(imgPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 36, 64, 64));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

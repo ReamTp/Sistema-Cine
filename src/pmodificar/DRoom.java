@@ -2,8 +2,6 @@ package pmodificar;
 
 import datos.SalasAsociadasCRUD;
 import datos.SetMapData;
-import entidades.SalasAsociadas;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelosDatos.ModeloTablas;
@@ -20,6 +18,8 @@ public class DRoom extends javax.swing.JPanel {
         modeloDRoom();
         comprobarComboBox();
         Campos(false);
+        jLabel4.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src\\diseño\\imagenes\\salaCineIcon128.png");
     }
 
     private void comprobarComboBox() {
@@ -154,8 +154,6 @@ public class DRoom extends javax.swing.JPanel {
                     .addComponent(btnDelete))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/salaCineIcon128.png"))); // NOI18N
 
         tableRoomMovie.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

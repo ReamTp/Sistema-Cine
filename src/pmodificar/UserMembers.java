@@ -25,6 +25,15 @@ public class UserMembers extends javax.swing.JPanel {
         comprobarComboBox();
         desactivarBtnCampos();
         modelosTablas();
+        generarImagenes();
+    }
+    
+    private void generarImagenes(){
+        jLabel14.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel14, "src\\diseño\\imagenes\\tipoUsuario128.png");
+        
+        jLabel16.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel16, "src\\diseño\\imagenes\\tipoDocumento128.png");
     }
 
     private void limpiarUsuario() {
@@ -639,8 +648,6 @@ public class UserMembers extends javax.swing.JPanel {
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/tipoUsuario128.png"))); // NOI18N
-
         tableTUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -687,7 +694,7 @@ public class UserMembers extends javax.swing.JPanel {
                                 .addComponent(btnDeleteTUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(jLabel14)))
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -714,7 +721,7 @@ public class UserMembers extends javax.swing.JPanel {
                             .addComponent(btnUpdateTUser)
                             .addComponent(btnDeleteTUser))
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel14))
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -742,8 +749,6 @@ public class UserMembers extends javax.swing.JPanel {
                 btnDeleteTDocActionPerformed(evt);
             }
         });
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/tipoDocumento128.png"))); // NOI18N
 
         tableTDoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -791,7 +796,7 @@ public class UserMembers extends javax.swing.JPanel {
                                 .addComponent(btnDeleteTDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(jLabel16)))
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -818,7 +823,7 @@ public class UserMembers extends javax.swing.JPanel {
                             .addComponent(btnUpdateTDoc)
                             .addComponent(btnDeleteTDoc))
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel16))
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 

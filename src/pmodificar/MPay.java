@@ -15,6 +15,8 @@ public class MPay extends javax.swing.JPanel {
         initComponents();
         modeloMPago();
         campos(false);
+        jLabel4.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src\\diseño\\imagenes\\mPagoIcon.png");
     }
     
     private void limpiarMPago(){
@@ -106,8 +108,6 @@ public class MPay extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableMPago);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/mPagoIcon.png"))); // NOI18N
-
         btnSelect.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnSelect.setText("Seleccionar");
         btnSelect.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +148,7 @@ public class MPay extends javax.swing.JPanel {
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +181,7 @@ public class MPay extends javax.swing.JPanel {
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete))
                         .addGap(52, 52, 52)
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSelect)

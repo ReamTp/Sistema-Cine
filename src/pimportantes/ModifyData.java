@@ -8,8 +8,26 @@ public class ModifyData extends javax.swing.JPanel {
     public ModifyData() {
         initComponents();
         this.contenedor.setViewportView(bn);
+        generarImagenes();
     }
-
+    
+    public final void generarImagenes(){
+        imgUserMember.setSize(32, 32);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgUserMember, "src\\diseño\\imagenes\\userMemberIconWhite32.png");
+        
+        imgMPago.setSize(32, 32);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgMPago, "src\\diseño\\imagenes\\mPagoIcon32.png");
+        
+        imgMovie.setSize(32, 32);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgMovie, "src\\diseño\\imagenes\\movieIcon.png");
+        
+        imgConsumibles.setSize(32, 32);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgConsumibles, "src\\diseño\\imagenes\\comidaIcon.png");
+        
+        imgSala.setSize(32, 32);
+        rsscalelabel.RSScaleLabel.setScaleLabel(imgSala, "src\\diseño\\imagenes\\salaWhite32.png");
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -68,8 +86,6 @@ public class ModifyData extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Sobre miembros");
         pnUserMember.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 12, -1, -1));
-
-        imgUserMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/userMemberIconWhite32.png"))); // NOI18N
         pnUserMember.add(imgUserMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 32, 32));
 
         add(pnUserMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 134, 50));
@@ -100,8 +116,6 @@ public class ModifyData extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Metodos de");
         pnMPago.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 12, -1, -1));
-
-        imgMPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/mPagoIcon32.png"))); // NOI18N
         pnMPago.add(imgMPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 10, 32, 32));
 
         add(pnMPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 0, 134, 50));
@@ -132,8 +146,6 @@ public class ModifyData extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Sobre");
         pnMovie.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 12, -1, -1));
-
-        imgMovie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/movieIcon.png"))); // NOI18N
         pnMovie.add(imgMovie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 32, 32));
 
         add(pnMovie, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 134, 50));
@@ -159,8 +171,6 @@ public class ModifyData extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Consumibles");
         pnConsumibles.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
-
-        imgConsumibles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/comidaIcon.png"))); // NOI18N
         pnConsumibles.add(imgConsumibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 32, 32));
 
         add(pnConsumibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 0, 134, 50));
@@ -191,8 +201,6 @@ public class ModifyData extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Desasociar");
         pnDSala.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 12, -1, -1));
-
-        imgSala.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/salaWhite32.png"))); // NOI18N
         pnDSala.add(imgSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 10, 32, 32));
 
         add(pnDSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 140, 50));

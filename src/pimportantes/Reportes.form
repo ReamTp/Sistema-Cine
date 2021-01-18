@@ -127,11 +127,6 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="imgBoletaCli">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/dise&#xf1;o/imagenes/boletoCliIcon.png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="46" y="36" width="64" height="64"/>
@@ -192,11 +187,6 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="imgBoletaMem">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/dise&#xf1;o/imagenes/boletoMemIcon.png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="46" y="36" width="64" height="64"/>
@@ -257,11 +247,6 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="imgMember">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/dise&#xf1;o/imagenes/memberIcon.png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="46" y="36" width="64" height="64"/>
@@ -322,11 +307,6 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="imgDrink">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/dise&#xf1;o/imagenes/bebidaIcon.png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="46" y="36" width="64" height="64"/>
@@ -387,11 +367,6 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="imgFood">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/dise&#xf1;o/imagenes/palomitasIcon.png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="46" y="36" width="64" height="64"/>
@@ -452,11 +427,6 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="imgPeliculas">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/dise&#xf1;o/imagenes/peliculaCineIcon.png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="46" y="36" width="64" height="64"/>

@@ -39,6 +39,21 @@ public class AMovie extends javax.swing.JPanel {
         camposHorarios(false);
         camposCategoria(false);
         camposEstrenos(false);
+        generarImagenes();
+    }
+    
+    private void generarImagenes(){
+        jLabel4.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src\\diseño\\imagenes\\horarioIcon128.png");
+        
+        jLabel10.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel10, "src\\diseño\\imagenes\\categoriaIcon128.png");
+        
+        jLabel24.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel24, "src\\diseño\\imagenes\\fechaIcon64.png");
+        
+        jLabel27.setSize(64, 64);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel27, "src\\diseño\\imagenes\\estrenoIcon128.png");
     }
 
     private void cargarComboBox() {
@@ -676,8 +691,6 @@ public class AMovie extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("(!) Ingresar hora con el formato de 13:00");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/horarioIcon128.png"))); // NOI18N
-
         tableHour.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -730,7 +743,7 @@ public class AMovie extends javax.swing.JPanel {
                                 .addComponent(btnDeleteHour, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(jLabel4)))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35))
@@ -759,7 +772,7 @@ public class AMovie extends javax.swing.JPanel {
                             .addComponent(btnUpdateHour)
                             .addComponent(btnDeleteHour))
                         .addGap(57, 57, 57)
-                        .addComponent(jLabel4))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -804,8 +817,6 @@ public class AMovie extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(tableCategory);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/categoriaIcon128.png"))); // NOI18N
-
         btnSelectCategory.setText("Seleccionar");
         btnSelectCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -832,7 +843,7 @@ public class AMovie extends javax.swing.JPanel {
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(jLabel10)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
@@ -881,7 +892,7 @@ public class AMovie extends javax.swing.JPanel {
                             .addComponent(btnUpdateCategory)
                             .addComponent(btnDeleteCategory))
                         .addGap(17, 17, 17)
-                        .addComponent(jLabel10))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -911,10 +922,6 @@ public class AMovie extends javax.swing.JPanel {
                 btnDeleteEstrenoActionPerformed(evt);
             }
         });
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/fechaIcon64.png"))); // NOI18N
-
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/estrenoIcon128.png"))); // NOI18N
 
         tableEstreno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

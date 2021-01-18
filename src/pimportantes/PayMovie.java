@@ -28,6 +28,15 @@ public class PayMovie extends javax.swing.JPanel {
         this.btnAgregar.setEnabled(false);
         this.btnAgregarBMem.setEnabled(false);
         membersCampos(false);
+        generarImagenes();
+    }
+    
+    private final void generarImagenes(){
+        jLabel13.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel13, "src\\diseño\\imagenes\\boletoCliIcon128.png");
+        
+        jLabel12.setSize(128, 128);
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel12, "src\\diseño\\imagenes\\boletoMiemIcon128.png");
     }
 
     private void limpiarBCliente() {
@@ -189,8 +198,6 @@ public class PayMovie extends javax.swing.JPanel {
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/boletoCliIcon128.png"))); // NOI18N
-
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +241,7 @@ public class PayMovie extends javax.swing.JPanel {
                                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(132, 132, 132))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +307,7 @@ public class PayMovie extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel13)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -344,8 +351,6 @@ public class PayMovie extends javax.swing.JPanel {
         jLabel20.setText("Descuento:");
 
         txtDiscount.setText("20");
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/imagenes/boletoMiemIcon128.png"))); // NOI18N
 
         btnCalcularBMiem.setText("Calcular");
         btnCalcularBMiem.addActionListener(new java.awt.event.ActionListener() {
@@ -403,7 +408,7 @@ public class PayMovie extends javax.swing.JPanel {
                                         .addComponent(jLabel16)
                                         .addGap(112, 112, 112)
                                         .addComponent(lbTPago2))
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(77, 77, 77)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,7 +461,7 @@ public class PayMovie extends javax.swing.JPanel {
                             .addComponent(btnAgregarBMem)
                             .addComponent(btnLimpiarBMem))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jLabel12))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel15)
